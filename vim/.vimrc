@@ -344,9 +344,9 @@ let g:NERDTreeDirArrows=1
 let g:NERDTreeAutoDeleteBuffer=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 " Start NERDTree
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 " Go to previous (last accessed) window.
-autocmd VimEnter * wincmd p
+" autocmd VimEnter * wincmd p
 " Keep NERDTree open in buffers/tabs
 " autocmd BufWinEnter * NERDTreeMirrorOpen
 
