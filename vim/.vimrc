@@ -59,6 +59,7 @@ Plug 'tpope/vim-surround'
 Plug 'qpkorr/vim-bufkill'
 Plug 'ianding1/leetcode.vim'
 Plug 'wellle/targets.vim'
+Plug 'justinmk/vim-syntax-extra'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -338,15 +339,17 @@ let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize=50
-let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeDirArrows=1
 let g:NERDTreeAutoDeleteBuffer=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 " Start NERDTree
 " autocmd VimEnter * NERDTree
+
 " Go to previous (last accessed) window.
 " autocmd VimEnter * wincmd p
+
 " Keep NERDTree open in buffers/tabs
 " autocmd BufWinEnter * NERDTreeMirrorOpen
 
