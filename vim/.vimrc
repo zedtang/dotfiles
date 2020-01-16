@@ -390,9 +390,6 @@ endif
 "*****************************************************************************
 "" Autocmd Rules
 "*****************************************************************************
-"" Auto-source vimrc when saved
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc-sync-fromstart
   autocmd!
