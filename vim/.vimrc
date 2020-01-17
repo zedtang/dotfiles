@@ -60,6 +60,7 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'ianding1/leetcode.vim'
 Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-syntax-extra'
+Plug 'lervag/vimtex'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -694,7 +695,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
 
 
