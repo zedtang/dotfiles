@@ -60,6 +60,9 @@ Plug 'ianding1/leetcode.vim'
 Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'lervag/vimtex'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -551,6 +554,9 @@ nnoremap <leader>ll :LeetCodeList<CR>
 nnoremap <leader>lt :LeetCodeTest<CR>
 nnoremap <leader>ls :LeetCodeSubmit<CR>
 nnoremap <leader>li :LeetCodeSignIn<CR>
+
+" markdown-preview
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 
 "*****************************************************************************
 "" Custom configs
