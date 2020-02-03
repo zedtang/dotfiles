@@ -70,7 +70,7 @@ Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'junegunn/gv.vim'
 
 "" Debugging
-Plug 'vim-scripts/Conque-GDB'
+Plug 'zedtang/Conque-GDB'
 
 "" Comments
 Plug 'tpope/vim-commentary'
@@ -163,8 +163,8 @@ set softtabstop=0
 set shiftwidth=4
 set expandtab
 
-"" Map leader to ,
-let mapleader=','
+"" Map leader to space
+let mapleader=' '
 
 "" Enable hidden buffers
 set hidden
@@ -364,7 +364,7 @@ let g:nerdtree_tabs_open_on_console_startup=2
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_autofind=1
 nnoremap <silent> <F2> :NERDTreeTabsFind<CR>
-nnoremap <silent> <F3> :NERDTreeMirrorToggle<CR>
+nnoremap <silent> <leader>m :NERDTreeMirrorToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>g :Rgrep<CR>
@@ -500,7 +500,7 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
 
 " Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
+nmap <silent> <leader>n :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " Disable visualbell
@@ -526,17 +526,11 @@ if has('macunix')
   vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
-"" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
-
 "" Close buffer
-noremap <leader>c :bd<CR>
+noremap <leader>x :BD<CR>
 
 "" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <silent> <leader>c :noh<CR>
 
 "" Switching windows
 noremap <C-j> <C-w>j
@@ -571,7 +565,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" leetcode.vim
+"" leetcode.vim
 let g:leetcode_solution_filetype='cpp'
 let g:leetcode_browser='chrome'
 nnoremap <leader>ll :LeetCodeList<CR>
@@ -579,8 +573,16 @@ nnoremap <leader>lt :LeetCodeTest<CR>
 nnoremap <leader>ls :LeetCodeSubmit<CR>
 nnoremap <leader>li :LeetCodeSignIn<CR>
 
-" markdown-preview
+"" markdown-preview
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+
+"" Conque-GDB
+let g:ConqueGdb_SrcSplit = 'above'
+let g:ConqueGdb_SaveHistory = 1
+let g:ConqueGdb_Leader = ','
+let g:ConqueTerm_Color = 2
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_StartMessages = 0
 
 "*****************************************************************************
 "" Custom configs
@@ -646,10 +648,10 @@ augroup go
   au FileType go nmap <Leader>gt <Plug>(go-coverage-toggle)
   au FileType go nmap <Leader>i <Plug>(go-info)
   au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
-  au FileType go nmap <C-g> :GoDecls<cr>
-  au FileType go nmap <leader>dr :GoDeclsDir<cr>
-  au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
-  au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
+  au FileType go nmap <C-g> :GoDecls<CR>
+  au FileType go nmap <leader>dr :GoDeclsDir<CR>
+  au FileType go imap <C-g> <esc>:<C-u>GoDecls<CR>
+  au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<CR>
   au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
 
 augroup END
