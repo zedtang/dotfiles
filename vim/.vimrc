@@ -27,50 +27,58 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+"" Project/Filetree Browsing
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'jiangmiao/auto-pairs'
-Plug 'majutsushi/tagbar'
-Plug 'w0rp/ale'
-Plug 'Yggdroot/indentLine'
-Plug 'avelino/vim-bootstrap-updater'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'vim-scripts/a.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'henrik/vim-indexed-search'
-Plug 'ycm-core/YouCompleteMe'
-Plug 'mhinz/vim-startify'
-Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/gv.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-surround'
-Plug 'qpkorr/vim-bufkill'
-Plug 'ianding1/leetcode.vim'
-Plug 'wellle/targets.vim'
-Plug 'justinmk/vim-syntax-extra'
-Plug 'lervag/vimtex'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'rhysd/vim-grammarous'
 
+"" Buffer/File Browsing
+Plug 'vim-scripts/grep.vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
 endif
+
+"" Code Browsing
+Plug 'zedtang/cscope_maps'
+Plug 'majutsushi/tagbar'
+
+"" Writing Code
+Plug 'ycm-core/YouCompleteMe'
+Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Yggdroot/indentLine'
+Plug 'bronson/vim-trailing-whitespace'
+
+"" Vim Functionality
+Plug 'henrik/vim-indexed-search'
+Plug 'tpope/vim-unimpaired'
+Plug 'qpkorr/vim-bufkill'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
+Plug 'wellle/targets.vim'
+
+"" Source Control Integration
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+Plug 'junegunn/gv.vim'
+
+"" Debugging
+Plug 'vim-scripts/Conque-GDB'
+
+"" Comments
+Plug 'tpope/vim-commentary'
+
+"" Misc
+Plug 'avelino/vim-bootstrap-updater'
+Plug 'mhinz/vim-startify'
+Plug 'ianding1/leetcode.vim'
+
 let g:make = 'gmake'
 if exists('make')
         let g:make = 'make'
@@ -87,6 +95,10 @@ Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/CSApprox'
+Plug 'ryanoasis/vim-devicons'
 
 "*****************************************************************************
 "" Custom bundles
@@ -95,6 +107,8 @@ Plug 'NLKNguyen/papercolor-theme'
 " c
 Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 Plug 'ludwig/split-manpage.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'justinmk/vim-syntax-extra'
 
 
 " go
@@ -106,6 +120,14 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 "" Python Bundle
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+
+" latex
+Plug 'lervag/vimtex'
+
+" markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 
 "*****************************************************************************
