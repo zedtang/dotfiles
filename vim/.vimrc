@@ -121,8 +121,10 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
+
 " latex
 Plug 'lervag/vimtex'
+
 
 " markdown
 Plug 'godlygeek/tabular'
@@ -238,11 +240,11 @@ set background=light
 set mousemodel=popup
 set t_Co=256
 set guioptions=egmrti
-set gfn=Monospace\ 10
+set gfn=FiraCodeNerdFontComplete-Regular:h14
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
+    set guifont=FiraCodeNerdFontComplete-Regular:h14
     set transparency=7
   endif
 else
@@ -397,7 +399,7 @@ endif
 "*****************************************************************************
 "" Reload vimrc on save
 if has ('autocmd') " Remain compatible with earlier versions
-  augroup vimrc     " Source vim configuration upon save
+  augroup vimrc    " Source vim configuration upon save
     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
   augroup END
@@ -699,7 +701,6 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
-
 
 
 "*****************************************************************************
