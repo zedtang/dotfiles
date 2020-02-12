@@ -153,10 +153,14 @@ filetype plugin indent on
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
+
 set ttyfast
 
 "" Fix backspace indent
 set backspace=indent,eol,start
+
+"" Fix slow O inserts
+set timeout timeoutlen=1000 ttimeoutlen=100
 
 "" Tabs. May be overridden by autocmd rules
 set tabstop=4
@@ -182,6 +186,8 @@ set autochdir
 "" Directories for swp files
 set nobackup
 set noswapfile
+
+set nojoinspaces
 
 "" Use mouse
 set mouse=a
@@ -217,7 +223,18 @@ syntax enable
 syntax on
 set ruler
 set number
+set relativenumber
 set cursorline
+set noshowmode
+
+"" block cursor in normal mode, vertical bar in insert mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 let g:PaperColor_Theme_Options = {
   \   'language': {
@@ -289,11 +306,6 @@ set titleold="Terminal"
 set titlestring=%F
 
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
-nnoremap n nzzzv
-nnoremap N Nzzzv
 
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
@@ -397,13 +409,20 @@ endif
 "*****************************************************************************
 "" Autocmd Rules
 "*****************************************************************************
+"" Toggle relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 "" Reload vimrc on save
 if has ('autocmd') " Remain compatible with earlier versions
   augroup vimrc    " Source vim configuration upon save
     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
   augroup END
-endif " has autocmd
+endif
 
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc-sync-fromstart
@@ -473,6 +492,7 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" fzf.vim
+set wildmenu
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
@@ -535,8 +555,16 @@ if has('macunix')
   vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
+" Leave paste mode when leaving insert mode
+autocmd InsertLeave * set nopaste
+
 "" Close buffer
 noremap <leader>x :BD<CR>
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 "" Clean search (highlight)
 nnoremap <silent> <leader>c :noh<CR>
@@ -550,6 +578,16 @@ noremap <C-h> <C-w>h
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
+
+"" Move by line
+nnoremap j gj
+nnoremap k gk
+
+" 'Q' in normal mode enters Ex mode. You almost never want this.
+nmap Q <Nop>
+" Unbind for tmux
+map <C-a> <Nop>
+map <C-x> <Nop>
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
@@ -674,7 +712,7 @@ augroup END
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
