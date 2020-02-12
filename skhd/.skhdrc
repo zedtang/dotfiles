@@ -115,24 +115,6 @@ ctrl + alt - j : yabai -m window --insert south
 ctrl + alt - k : yabai -m window --insert north
 ctrl + alt - l : yabai -m window --insert east
 
-# rotate tree
-alt - r : yabai -m space --rotate 90
-
-# mirror tree y-axis
-alt - y : yabai -m space --mirror y-axis
-
-# mirror tree x-axis
-alt - x : yabai -m space --mirror x-axis
-
-# toggle desktop offset
-alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
-
-# toggle window parent zoom
-alt - d : yabai -m window --toggle zoom-parent
-
-# toggle window fullscreen zoom
-alt - f : yabai -m window --toggle zoom-fullscreen
-
 # toggle window native fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
