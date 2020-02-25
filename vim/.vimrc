@@ -107,7 +107,7 @@ Plug 'ryanoasis/vim-devicons'
 " c
 Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 Plug 'ludwig/split-manpage.vim'
-Plug 'vim-scripts/a.vim'
+Plug 'zedtang/a.vim'
 Plug 'justinmk/vim-syntax-extra'
 
 
