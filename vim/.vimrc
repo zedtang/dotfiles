@@ -582,10 +582,6 @@ noremap <C-h> <C-w>h
 vmap < <gv
 vmap > >gv
 
-"" Move by line
-nnoremap j gj
-nnoremap k gk
-
 " 'Q' in normal mode enters Ex mode. You almost never want this.
 nmap Q <Nop>
 " Unbind for tmux
