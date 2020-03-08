@@ -51,6 +51,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'chrisbra/NrrwRgn'
 
 "" Vim Functionality
 Plug 'henrik/vim-indexed-search'
@@ -130,6 +131,10 @@ Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc-after'
 
 
 "*****************************************************************************
@@ -613,16 +618,16 @@ nnoremap <leader>lt :LeetCodeTest<CR>
 nnoremap <leader>ls :LeetCodeSubmit<CR>
 nnoremap <leader>li :LeetCodeSignIn<CR>
 
-"" markdown-preview
+"" markdown-preview.nvim
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+nmap <leader>mp <Plug>MarkdownPreview
 
-"" Conque-GDB
-let g:ConqueGdb_SrcSplit = 'above'
-let g:ConqueGdb_SaveHistory = 1
-let g:ConqueGdb_Leader = ','
-let g:ConqueTerm_Color = 2
-let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_StartMessages = 0
+"" NrrwRgn
+let g:nrrw_rgn_vert = 1
+let g:nrrw_rgn_nohl = 1
+let g:nrrw_rgn_nomap_nr = 1
+let g:nrrw_rgn_nomap_Nr = 1
+xmap <Leader>nr <Plug>NrrwrgnBangDo
 
 "*****************************************************************************
 "" Custom configs
@@ -733,6 +738,16 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
 
+"" Conque-GDB
+let g:ConqueGdb_SrcSplit = 'above'
+let g:ConqueGdb_SaveHistory = 1
+let g:ConqueGdb_Leader = ','
+let g:ConqueTerm_Color = 2
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_StartMessages = 0
+
+" vim-pandoc-after
+let g:pandoc#after#modules#enabled = ["nrrwrgn", "ultisnips", "tablemode"]
 
 "*****************************************************************************
 "*****************************************************************************
