@@ -645,6 +645,8 @@ nmap <leader>ps :PlugStatus<CR>
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
+" c.vim
+let g:C_Ctrl_j = 0
 
 " go
 " vim-go
