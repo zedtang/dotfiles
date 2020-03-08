@@ -631,6 +631,12 @@ let g:nrrw_rgn_nomap_nr = 1
 let g:nrrw_rgn_nomap_Nr = 1
 xmap <Leader>nr <Plug>NrrwrgnBangDo
 
+"" vim-plug
+nmap <leader>pi :PlugInstall<CR>
+nmap <leader>pu :PlugUpdate<CR>
+nmap <leader>pc :PlugClean<CR>
+nmap <leader>ps :PlugStatus<CR>
+
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
