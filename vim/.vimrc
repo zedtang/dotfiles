@@ -53,6 +53,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'chrisbra/NrrwRgn'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
+Plug 'sgur/vim-textobj-parameter'
+Plug 'Shougo/echodoc.vim'
 
 "" Vim Functionality
 Plug 'henrik/vim-indexed-search'
@@ -66,7 +72,11 @@ Plug 'wellle/targets.vim'
 
 "" Source Control Integration
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'junegunn/gv.vim'
 
@@ -165,6 +175,8 @@ set ttyfast
 
 "" Fix backspace indent
 set backspace=indent,eol,start
+
+set updatetime=100
 
 "" Fix slow O inserts
 set timeout timeoutlen=1000 ttimeoutlen=100
@@ -359,45 +371,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-"" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeShowHidden=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize=50
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrows=1
-let g:NERDTreeAutoDeleteBuffer=1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-" Start NERDTree
-" autocmd VimEnter * NERDTree
-
-" Go to previous (last accessed) window.
-" autocmd VimEnter * wincmd p
-
-" Keep NERDTree open in buffers/tabs
-" autocmd BufWinEnter * NERDTreeMirrorOpen
-
-"" NERDTree Tabs configuration
-let g:nerdtree_tabs_open_on_console_startup=2
-let g:nerdtree_tabs_focus_on_files=1
-let g:nerdtree_tabs_autofind=1
-nnoremap <silent> <F2> :NERDTreeTabsFind<CR>
-nnoremap <silent> <leader>m :NERDTreeMirrorToggle<CR>
-
-" grep.vim
-nnoremap <silent> <leader>g :Rgrep<CR>
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
-
-" terminal emulation
-nnoremap <silent> <leader>sh :terminal<CR>
-
-
 "*****************************************************************************
 "" Commands
 "*****************************************************************************
@@ -463,6 +436,43 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+"" NERDTree configuration
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize=50
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=1
+let g:NERDTreeAutoDeleteBuffer=1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+" Start NERDTree
+" autocmd VimEnter * NERDTree
+
+" Go to previous (last accessed) window.
+" autocmd VimEnter * wincmd p
+
+" Keep NERDTree open in buffers/tabs
+" autocmd BufWinEnter * NERDTreeMirrorOpen
+
+"" NERDTree Tabs configuration
+let g:nerdtree_tabs_open_on_console_startup=2
+let g:nerdtree_tabs_focus_on_files=1
+let g:nerdtree_tabs_autofind=1
+nnoremap <silent> <F2> :NERDTreeTabsFind<CR>
+nnoremap <silent> <leader>n :NERDTreeMirrorToggle<CR>
+
+" grep.vim
+nnoremap <silent> <leader>g :Rgrep<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db'
+let Grep_Skip_Dirs = '.git node_modules'
+
+" terminal emulation
+nnoremap <silent> <leader>sh :terminal<CR>
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
@@ -815,6 +825,9 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" echodoc
+let g:echodoc#enable_at_startup = 1
 
 "*****************************************************************************
 "*****************************************************************************
