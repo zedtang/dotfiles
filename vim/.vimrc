@@ -42,7 +42,8 @@ endif
 
 "" Code Browsing
 Plug 'zedtang/cscope_maps'
-Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 "" Writing Code
 Plug 'ycm-core/YouCompleteMe'
@@ -105,11 +106,12 @@ Plug 'ryanoasis/vim-devicons'
 "" Custom bundles
 "*****************************************************************************
 
-" c
+" c/c++
 Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 Plug 'ludwig/split-manpage.vim'
 Plug 'zedtang/a.vim'
 Plug 'justinmk/vim-syntax-extra'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 
 " go
@@ -218,6 +220,9 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
+" Completion options
+set completeopt=longest,menuone
+
 " cscope_maps
 set nocscopeverbose
 
@@ -310,7 +315,6 @@ let g:airline_theme = 'papercolor'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
 " IndentLine
@@ -322,7 +326,6 @@ let g:indent_guides_auto_colors = 1
 let g:indentLine_fileTypeExclude = [
   \'markdown',
   \'startify',
-  \'tagbar'
   \]
 
 " fzf
@@ -528,11 +531,14 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ale_linters = {}
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
-
-" Tagbar
-nmap <silent> <leader>n :TagbarToggle<CR>
-let g:tagbar_autoclose=1
-let g:tagbar_autofocus=1
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_highlights = 0
 
 " Disable visualbell
 set noerrorbells visualbell t_vb=
@@ -638,17 +644,41 @@ nmap <leader>ps :PlugStatus<CR>
 " ctags
 " jump to tag if one, show list otherwise
 nmap <C-]> g<C-]>
+set tags=./.tags;,.tags
+
+" LeaderF
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_ReverseOrder = 1
+nnoremap <silent> <leader>m :LeaderfFunction!<CR>
 
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
 
-" c
+" c/c++
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
 " c.vim
 let g:C_Ctrl_j = 0
+
+" ale
+:call extend(g:ale_linters, {
+    \"c": ['gcc', 'cppcheck'],
+    \"cpp": ['g++', 'cppcheck'], })
+if executable('gcc') == 0 && executable('clang')
+    let g:ale_linters.c += ['clang']
+    let g:ale_linters.cpp += ['clang']
+endif
+let g:ale_c_gcc_options = '-Wall -O2 -std=c11'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++1z'
+
+let g:ale_c_clang_options = '-Wall -O2 -std=c11'
+let g:ale_cpp_clang_options = '-Wall -O2 -std=c++1z'
+
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
 
 " go
 " vim-go
@@ -750,7 +780,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
 
-"" Conque-GDB
+" Conque-GDB
 let g:ConqueGdb_SrcSplit = 'above'
 let g:ConqueGdb_SaveHistory = 1
 let g:ConqueGdb_Leader = ','
@@ -760,6 +790,31 @@ let g:ConqueTerm_StartMessages = 0
 
 " vim-pandoc-after
 let g:pandoc#after#modules#enabled = ["nrrwrgn", "ultisnips", "tablemode"]
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
+
+" vim-gutentags
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
 
 "*****************************************************************************
 "*****************************************************************************
