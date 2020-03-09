@@ -635,6 +635,10 @@ nmap <leader>pu :PlugUpdate<CR>
 nmap <leader>pc :PlugClean<CR>
 nmap <leader>ps :PlugStatus<CR>
 
+" ctags
+" jump to tag if one, show list otherwise
+nmap <C-]> g<C-]>
+
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
