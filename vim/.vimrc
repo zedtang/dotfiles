@@ -43,7 +43,7 @@ endif
 "" Code Browsing
 Plug 'zedtang/cscope_maps'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'majutsushi/tagbar'
 
 "" Writing Code
 Plug 'ycm-core/YouCompleteMe'
@@ -281,6 +281,7 @@ set gfn=FiraCodeNerdFontComplete-Regular:h14
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
     set guifont=FiraCodeNerdFontComplete-Regular:h14
+    set antialias
     set transparency=7
   endif
 else
@@ -324,6 +325,7 @@ let g:airline_theme = 'papercolor'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
 " IndentLine
@@ -335,6 +337,7 @@ let g:indent_guides_auto_colors = 1
 let g:indentLine_fileTypeExclude = [
   \'markdown',
   \'startify',
+  \'tagbar'
   \]
 
 " fzf
@@ -654,37 +657,12 @@ nmap <leader>ps :PlugStatus<CR>
 nmap <C-]> g<C-]>
 set tags=./.tags;,.tags
 
-" LeaderF
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
-let g:Lf_ShowRelativePath = 1
-let g:Lf_HideHelp = 1
-
-let g:Lf_WildIgnore = {
-    \ 'dir': ['.svn','.git','.hg'],
-    \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-    \ }
-
-let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
-let g:Lf_MruMaxFiles = 2048
-let g:Lf_StlColorscheme = 'powerline'
-let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-let g:Lf_NormalMap = {
-    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<cr>']],
-    \ "Mru": [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<cr>']],
-    \ "Tag": [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<cr>']],
-    \ "BufTag": [["<ESC>", ':exec g:Lf_py "bufTagExplManager.quit()"<cr>']],
-    \ "Function": [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<cr>']],
-    \ }
-if (exists('*popup_create') && has('patch-8.1.2000')) || has('nvim-0.4')
-    let g:Lf_WindowPosition = 'popup'
-endif
-let g:Lf_ReverseOrder = 1
-nnoremap <silent> <leader>m :LeaderfFunction!<CR>
+"" tagbar
+let g:tagbar_autofocus=0
+let g:tagbar_compact=1
+let g:tagbar_right=1
+let g:tagbar_width=35
+nnoremap <leader>tb :TagbarToggle<CR>
 
 "*****************************************************************************
 "" Custom configs
