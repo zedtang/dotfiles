@@ -28,11 +28,11 @@ call plug#begin(expand('~/.vim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 "" Project/Filetree Browsing
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeMirrorToggle' }
+Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeMirrorToggle' }
 
 "" Buffer/File Browsing
-Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/grep.vim', { 'on': 'Rgrep' }
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -43,7 +43,7 @@ endif
 "" Code Browsing
 Plug 'zedtang/cscope_maps'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 "" Writing Code
 Plug 'ycm-core/YouCompleteMe'
@@ -143,7 +143,7 @@ Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'dhruvasagar/vim-table-mode'
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
@@ -662,7 +662,7 @@ let g:tagbar_autofocus=0
 let g:tagbar_compact=1
 let g:tagbar_right=1
 let g:tagbar_width=35
-nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
 
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
