@@ -233,9 +233,6 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-" Completion options
-set completeopt=longest,menuone
-
 " cscope_maps
 set nocscopeverbose
 
@@ -508,6 +505,7 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" fzf.vim
+let g:fzf_layout={'window': {'width':0.9, 'height':0.6}}
 set wildmenu
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -659,8 +657,34 @@ nmap <C-]> g<C-]>
 set tags=./.tags;,.tags
 
 " LeaderF
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 1
+let g:Lf_HideHelp = 1
+
+let g:Lf_WildIgnore = {
+    \ 'dir': ['.svn','.git','.hg'],
+    \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+    \ }
+
+let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
+let g:Lf_MruMaxFiles = 2048
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+let g:Lf_NormalMap = {
+    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<cr>']],
+    \ "Mru": [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<cr>']],
+    \ "Tag": [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<cr>']],
+    \ "BufTag": [["<ESC>", ':exec g:Lf_py "bufTagExplManager.quit()"<cr>']],
+    \ "Function": [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<cr>']],
+    \ }
+if (exists('*popup_create') && has('patch-8.1.2000')) || has('nvim-0.4')
+    let g:Lf_WindowPosition = 'popup'
+endif
 let g:Lf_ReverseOrder = 1
 nnoremap <silent> <leader>m :LeaderfFunction!<CR>
 
@@ -811,10 +835,76 @@ let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
+set completeopt=menu,menuone
+if has('patch-8.0.1000')
+    set completeopt=menu,menuone,noselect
+endif
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd")
+
 let g:ycm_semantic_triggers =  {
-           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-           \ 'cs,lua,javascript': ['re!\w{2}'],
-           \ }
+    \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+    \ 'cs,lua,javascript': ['re!\w{2}'],
+    \ }
+
+let g:ycm_goto_buffer_command = 'new-or-existing-tab'
+
+let g:ycm_filetype_whitelist = {
+    \ "c":1,
+    \ "cpp":1,
+    \ "objc":1,
+    \ "objcpp":1,
+    \ "python":1,
+    \ "java":1,
+    \ "javascript":1,
+    \ "coffee":1,
+    \ "vim":1,
+    \ "go":1,
+    \ "cs":1,
+    \ "lua":1,
+    \ "perl":1,
+    \ "perl6":1,
+    \ "php":1,
+    \ "ruby":1,
+    \ "rust":1,
+    \ "erlang":1,
+    \ "asm":1,
+    \ "nasm":1,
+    \ "masm":1,
+    \ "tasm":1,
+    \ "asm68k":1,
+    \ "asmh8300":1,
+    \ "asciidoc":1,
+    \ "basic":1,
+    \ "vb":1,
+    \ "make":1,
+    \ "cmake":1,
+    \ "html":1,
+    \ "css":1,
+    \ "less":1,
+    \ "json":1,
+    \ "cson":1,
+    \ "typedscript":1,
+    \ "haskell":1,
+    \ "lhaskell":1,
+    \ "lisp":1,
+    \ "scheme":1,
+    \ "sdl":1,
+    \ "sh":1,
+    \ "zsh":1,
+    \ "bash":1,
+    \ "man":1,
+    \ "markdown":1,
+    \ "matlab":1,
+    \ "maxima":1,
+    \ "dosini":1,
+    \ "conf":1,
+    \ "config":1,
+    \ "zimbu":1,
+    \ "ps1":1,
+    \ }
 
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
