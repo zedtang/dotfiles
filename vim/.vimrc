@@ -434,6 +434,9 @@ augroup END
 
 set autoread
 
+"" vim-commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
