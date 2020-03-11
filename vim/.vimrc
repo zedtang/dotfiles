@@ -80,9 +80,6 @@ endif
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'junegunn/gv.vim'
 
-"" Debugging
-Plug 'zedtang/Conque-GDB'
-
 "" Comments
 Plug 'tpope/vim-commentary'
 
@@ -126,12 +123,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " go
 "" Go Lang Bundle
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
@@ -873,14 +870,6 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
-
-" Conque-GDB
-let g:ConqueGdb_SrcSplit = 'above'
-let g:ConqueGdb_SaveHistory = 1
-let g:ConqueGdb_Leader = ','
-let g:ConqueTerm_Color = 2
-let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_StartMessages = 0
 
 " vim-pandoc-after
 let g:pandoc#after#modules#enabled = ["nrrwrgn", "ultisnips", "tablemode"]
