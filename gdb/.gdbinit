@@ -3,6 +3,9 @@ set print pretty on
 set print object on
 set print vtbl on
 
+set confirm off
+set verbose off
+
 set history save on
 set history filename ~/.gdb_history
 
@@ -47,4 +50,19 @@ end
 
 define thread
  info threads
+end
+
+define r
+ run
+ refresh
+end
+
+define c
+ continue
+ refresh
+end
+
+define n
+ next
+ refresh
 end
