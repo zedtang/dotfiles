@@ -63,12 +63,13 @@ Plug 'Shougo/echodoc.vim'
 "" Vim Functionality
 Plug 'henrik/vim-indexed-search'
 Plug 'tpope/vim-unimpaired'
-Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'wellle/targets.vim'
+Plug 'tpope/vim-repeat'
+Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 
 "" Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -116,7 +117,7 @@ Plug 'ryanoasis/vim-devicons'
 " c/c++
 Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 Plug 'ludwig/split-manpage.vim'
-Plug 'zedtang/a.vim'
+Plug 'zedtang/a.vim', {'for': ['c', 'cpp']}
 Plug 'justinmk/vim-syntax-extra'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
@@ -138,8 +139,8 @@ Plug 'lervag/vimtex'
 
 " markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown', 'on': 'MarkdownPreview' }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -578,8 +579,9 @@ endif
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
-"" Close buffer
-noremap <leader>x :BD<CR>
+"" vim-sayonara
+nnoremap <silent><leader>x :Sayonara<CR>
+nnoremap <silent><leader>X :Sayonara!<CR>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -663,6 +665,7 @@ let g:tagbar_autofocus=0
 let g:tagbar_compact=1
 let g:tagbar_right=1
 let g:tagbar_width=35
+let g:tagbar_sort = 0
 nnoremap <leader>tt :TagbarToggle<CR>
 
 " YouCompleteMe
