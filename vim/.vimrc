@@ -75,7 +75,7 @@ Plug 'tpope/vim-fugitive'
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
 else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+  Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 endif
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'junegunn/gv.vim'
