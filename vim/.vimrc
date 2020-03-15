@@ -872,6 +872,9 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
 
+" vim-pandoc
+nmap <leader>pp :Pandoc pdf<CR>
+
 " vim-pandoc-after
 let g:pandoc#after#modules#enabled = ["nrrwrgn", "ultisnips", "tablemode"]
 
