@@ -392,7 +392,7 @@ endif
 "" Autocmd Rules
 "*****************************************************************************
 "" Toggle relativenumber
-augroup numbertoggle
+augroup number-toggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
@@ -896,6 +896,20 @@ endif
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
+
+" vim-signify
+let g:signify_vcs_list = ['git']
+let g:signify_difftool = 'diff'
+let g:signify_sign_add = '+'
+let g:signify_sign_delete = '_'
+let g:signify_sign_delete_first_line = '‾'
+let g:signify_sign_change = '~'
+let g:signify_sign_changedelete = g:signify_sign_change
+let g:signify_as_gitgutter = 1
+
+let g:signify_vcs_cmds = {
+         \ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
+         \}
 
 "*****************************************************************************
 "*****************************************************************************
