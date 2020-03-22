@@ -230,6 +230,15 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
+" Completion options
+set completeopt=menu,menuone
+if has('patch-8.0.1000')
+    set completeopt=menu,menuone,noselect
+endif
+
+" Suppress annoy messages
+set shortmess+=c
+
 " cscope_maps
 set nocscopeverbose
 
@@ -676,10 +685,6 @@ let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
-set completeopt=menu,menuone
-if has('patch-8.0.1000')
-    set completeopt=menu,menuone,noselect
-endif
 " Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
@@ -750,8 +755,10 @@ let g:ycm_filetype_whitelist = {
 "*****************************************************************************
 
 " c/c++
-autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+augroup vimrc-c/c++
+  autocmd!
+  autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
+augroup END
 
 " c.vim
 let g:C_Ctrl_j = 0
@@ -811,7 +818,7 @@ augroup completion_preview_close
   endif
 augroup END
 
-augroup go
+augroup vimrc-go
 
   au!
   au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
