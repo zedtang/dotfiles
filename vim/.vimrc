@@ -28,8 +28,8 @@ call plug#begin(expand('~/.vim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 "" Project/Filetree Browsing
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeMirrorToggle' }
-Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeMirrorToggle' }
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 
 "" Buffer/File Browsing
 Plug 'vim-scripts/grep.vim', { 'on': 'Rgrep' }
