@@ -41,8 +41,8 @@ else
 endif
 
 "" Code Browsing
-Plug 'zedtang/cscope_maps'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 "" Writing Code
@@ -892,14 +892,38 @@ let g:pandoc#after#modules#enabled = ["nrrwrgn", "ultisnips", "tablemode"]
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_file_list_command = {
+    \ 'markers': {
+    \ '.git': 'git ls-files',
+    \ },
+    \ }
+
+let g:gutentags_modules = []
+if executable('ctags')
+    let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+    let g:gutentags_modules += ['gtags_cscope']
+endif
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args = []
+let g:gutentags_ctags_extra_args += ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+let g:gutentags_cscope_build_inverted_index = 1
+let g:gutentags_auto_add_gtags_cscope = 0
+
+" change focus to quickfix window after search
+let g:gutentags_plus_switch = 1
+
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" vim-airline
+let g:airline#extensions#gutentags#enabled = 1
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
