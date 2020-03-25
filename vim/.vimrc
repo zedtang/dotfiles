@@ -115,11 +115,11 @@ Plug 'ryanoasis/vim-devicons'
 "*****************************************************************************
 
 " c/c++
-Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
+Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp', 'make']}
 Plug 'ludwig/split-manpage.vim'
 Plug 'zedtang/a.vim', {'for': ['c', 'cpp']}
 Plug 'justinmk/vim-syntax-extra'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 
 
 " go
@@ -764,6 +764,14 @@ augroup END
 
 " c.vim
 let g:C_Ctrl_j = 0
+
+" vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
 
 " ale
 :call extend(g:ale_linters, {
