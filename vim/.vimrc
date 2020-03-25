@@ -71,6 +71,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
+Plug 'arthurxavierx/vim-caser'
 
 "" Source Control Integration
 Plug 'tpope/vim-fugitive'
