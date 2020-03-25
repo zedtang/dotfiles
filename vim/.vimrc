@@ -396,6 +396,11 @@ if !exists('*s:setupWrapping')
   endfunction
 endif
 
+func! FixMeTag()
+  return "FIXME: [tjiaheng ".strftime("%Y-%m-%d")."]"
+endfunc
+iabbr <expr> fixme FixMeTag()
+
 "*****************************************************************************
 "" Autocmd Rules
 "*****************************************************************************
