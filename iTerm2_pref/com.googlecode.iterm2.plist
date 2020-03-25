@@ -303,7 +303,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1169 110 445 103 0 0 1680 1027 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>440 451 799 448 0 0 1680 1050 </string>
+	<string>320 339 799 448 0 0 1440 900 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
 	<string>360 393 735 382 0 0 1680 1050 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -313,7 +313,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>475 312 918 423 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 874 0 0 1440 900 </string>
+	<string>0 0 1280 774 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 0 1440 874 0 0 1440 900 </string>
 	<key>New Bookmarks</key>
@@ -562,7 +562,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Draw Powerline Glyphs</key>
-			<false/>
+			<true/>
 			<key>Dynamic Profile Filename</key>
 			<string>/Users/tjiaheng/Library/Application Support/iTerm2/DynamicProfiles/default.json</string>
 			<key>Flashing Bell</key>
@@ -916,11 +916,13 @@
 			<key>Name</key>
 			<string>default</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>TerminessTTFNerdFontComplete-Medium 14</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
+			<key>Non-ASCII Ligatures</key>
+			<false/>
 			<key>Normal Font</key>
-			<string>FiraCodeNerdFontComplete-Regular 14</string>
+			<string>PerfectDOSVGA437 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -976,7 +978,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<false/>
+			<true/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -991,19 +993,18 @@
 	<array>
 		<string>3.3.6</string>
 		<string>3.3.8</string>
-		<string>3.2.9</string>
+		<string>3.3.2</string>
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.7</string>
 		<string>3.3.9</string>
 		<string>3.3.0</string>
-		<string>3.3.2</string>
+		<string>3.2.9</string>
 		<string>3.3.4</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>FiraCode Nerd Font</string>
-		<string>JetBrains Mono</string>
+		<string>Perfect DOS VGA 437</string>
 	</array>
 	<key>NoSyncDynamicProfileChangeWillBeLost_SilenceUntil</key>
 	<real>589138846.05154705</real>
@@ -1012,9 +1013,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1440, 900}}</string>
+		<string>{{0, 0}, {1280, 800}}</string>
 		<key>topLeft</key>
-		<string>{148, 741}</string>
+		<string>{342, 723}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
@@ -1023,7 +1024,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>584575636.41687906</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>89</integer>
+	<integer>119</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1813,7 +1814,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-04T04:47:50Z</date>
+	<date>2020-03-24T11:11:14Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
