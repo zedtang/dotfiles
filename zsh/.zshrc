@@ -1,5 +1,4 @@
 DEFAULT_USER=`whoami`
-export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -191,10 +190,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-export EDITOR='vim'
-export MYVIMRC=~/.vimrc
-export VISUAL='vim'
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -209,19 +204,6 @@ export VISUAL='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias t='tmux attach || tmux new-session'
 
 # get aliases and functions from .profile
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tjiaheng/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tjiaheng/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tjiaheng/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tjiaheng/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

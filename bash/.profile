@@ -1,27 +1,41 @@
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH=$PATH:/usr/local/go/bin
+alias t='tmux attach || tmux new-session'
+
+export TERM="xterm-256color"
+export EDITOR='vim'
+export MYVIMRC=~/.vimrc
+export VISUAL='vim'
+
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+for pp in \
+    /usr/local/go/bin \
+    $GOPATH/bin \
+; do
+    PATH=$pp:${PATH}
+done
+export PATH
 export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 export GTAGSLABEL=native-pygments
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-function current_branch() { # Gets current branch
+# Gets current branch
+current_branch() {
   git rev-parse --abbrev-ref HEAD
 }
-function gh_remote_path() { # Parses the 'remote path' of the repo: username/repo
+
+# Parses the 'remote path' of the repo: username/repo
+gh_remote_path() {
   GH_PATH=`git remote -v | tr ':' ' ' | tr '.' ' ' | awk '/push/ {print $4}'`
   echo ${GH_PATH#com/}
 }
-function gh() { # Opens current branch on Github, works for all repos
+
+# Opens current branch on Github, works for all repos
+gh() {
   echo 'Opening branch on Github...'
   open "https://github.com/$(gh_remote_path)/tree/$(current_branch)"
 }
-function newpr() { # Opens current branch on Github in the "Open a pull request" compare view
+
+# Opens current branch on Github in the "Open a pull request" compare view
+newpr() {
   echo 'Opening compare on Github...'
   open "https://github.com/$(gh_remote_path)/compare/$(current_branch)?expand=1"
 }
