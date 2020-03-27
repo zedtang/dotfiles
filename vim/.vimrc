@@ -90,6 +90,7 @@ Plug 'tpope/vim-commentary'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'mhinz/vim-startify'
 Plug 'ianding1/leetcode.vim'
+Plug 'xolox/vim-notes', { 'on': ['Note', 'SearchNotes', 'DeleteNotes', 'RecentNotes'] }
 
 let g:make = 'gmake'
 if exists('make')
@@ -955,6 +956,9 @@ let g:signify_as_gitgutter = 1
 let g:signify_vcs_cmds = {
          \ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
          \}
+
+" vim-notes
+let g:notes_directories = ['~/src/notes']
 
 "*****************************************************************************
 "*****************************************************************************
