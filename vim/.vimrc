@@ -1,7 +1,7 @@
 " vim-bootstrap
-
+" vim: set foldmethod=marker foldlevel=0 nomodeline:
 "*****************************************************************************
-"" Vim-PLug core
+"" Vim-PLug core {{{
 "*****************************************************************************
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
@@ -24,8 +24,9 @@ endif
 " Required:
 call plug#begin(expand('~/.vim/plugged'))
 
+" }}}
 "*****************************************************************************
-"" Plug install packages
+"" Plug install packages {{{
 "*****************************************************************************
 "" Project/Filetree Browsing
 Plug 'scrooloose/nerdtree'
@@ -112,8 +113,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CSApprox'
 Plug 'ryanoasis/vim-devicons'
 
+" }}}
 "*****************************************************************************
-"" Custom bundles
+"" Custom bundles {{{
 "*****************************************************************************
 
 " c/c++
@@ -148,8 +150,9 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
-
+" }}}
 "*****************************************************************************
+" {{{
 "*****************************************************************************
 
 "" Include user's extra bundle
@@ -162,9 +165,9 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
-
+" }}}
 "*****************************************************************************
-"" Basic Setup
+"" Basic Setup {{{
 "*****************************************************************************"
 "" Encoding
 set encoding=utf-8
@@ -244,8 +247,9 @@ set shortmess+=c
 " cscope_maps
 set nocscopeverbose
 
+" }}}
 "*****************************************************************************
-"" Visual Settings
+"" Visual Settings {{{
 "*****************************************************************************
 syntax enable
 syntax on
@@ -366,8 +370,9 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" }}}
 "*****************************************************************************
-"" Abbreviations
+"" Abbreviations {{{
 "*****************************************************************************
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
@@ -381,14 +386,16 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
+" }}}
 "*****************************************************************************
-"" Commands
+"" Commands {{{
 "*****************************************************************************
 " remove trailing whitespaces
 command! FixWhitespace :%s/\s\+$//e
 
+" }}}
 "*****************************************************************************
-"" Functions
+"" Functions {{{
 "*****************************************************************************
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
@@ -403,8 +410,9 @@ func! FixMeTag()
 endfunc
 iabbr <expr> fixme FixMeTag()
 
+" }}}
 "*****************************************************************************
-"" Autocmd Rules
+"" Autocmd Rules {{{
 "*****************************************************************************
 "" Toggle relativenumber
 augroup number-toggle
@@ -452,8 +460,9 @@ set autoread
 "" vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
+" }}}
 "*****************************************************************************
-"" Mappings
+"" Mappings {{{
 "*****************************************************************************
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
@@ -759,8 +768,12 @@ let g:ycm_filetype_whitelist = {
     \ }
 nnoremap <leader>yg :YcmCompleter GoTo<CR>
 
+" vim-pandoc
+nmap <leader>pp :Pandoc pdf<CR>
+
+" }}}
 "*****************************************************************************
-"" Custom configs
+"" Custom configs {{{
 "*****************************************************************************
 
 " c/c++
@@ -897,9 +910,6 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['python', 'latex']
 let python_highlight_all = 1
 
-" vim-pandoc
-nmap <leader>pp :Pandoc pdf<CR>
-
 " vim-pandoc-after
 let g:pandoc#after#modules#enabled = ["nrrwrgn", "ultisnips", "tablemode"]
 
@@ -962,7 +972,9 @@ let g:signify_vcs_cmds = {
 " vim-notes
 let g:notes_directories = ['~/src/notes']
 
+" }}}
 "*****************************************************************************
+" {{{
 "*****************************************************************************
 
 "" Include user's local vim config
@@ -970,8 +982,9 @@ if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
+" }}}
 "*****************************************************************************
-"" Convenience variables
+"" Convenience variables {{{
 "*****************************************************************************
 
 " vim-airline
@@ -1009,3 +1022,5 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+" }}}

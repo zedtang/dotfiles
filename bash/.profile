@@ -16,6 +16,7 @@ export PATH
 export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 export GTAGSLABEL=native-pygments
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Gets current branch
 current_branch() {
