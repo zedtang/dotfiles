@@ -1,11 +1,17 @@
 # open terminal
-cmd - return : open -a /Applications/iTerm.app
+cmd - return : Applications/Alacritty.app/Contents/MacOS/alacritty
+
+# open Chrome
+cmd + shift - return : open -a Google\ Chrome
 
 # focus window
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
+
+cmd - j : yabai -m window --focus prev
+cmd - k : yabai -m window --focus next
 
 # swap window
 shift + alt - h : yabai -m window --swap west
@@ -115,6 +121,24 @@ ctrl + alt - j : yabai -m window --insert south
 ctrl + alt - k : yabai -m window --insert north
 ctrl + alt - l : yabai -m window --insert east
 
+# rotate tree
+alt - r : yabai -m space --rotate 90
+
+# mirror tree y-axis
+alt - y : yabai -m space --mirror y-axis
+
+# mirror tree x-axis
+alt - x : yabai -m space --mirror x-axis
+
+# toggle desktop offset
+alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+# toggle window parent zoom
+# alt - d : yabai -m window --toggle zoom-parent
+
+# toggle window fullscreen zoom
+# alt - f : yabai -m window --toggle zoom-fullscreen
+
 # toggle window native fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
@@ -128,15 +152,11 @@ alt - e : yabai -m window --toggle split
 alt - t : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2
 
-# toggle sticky (show on all spaces)
+# toggle sticky
 alt - s : yabai -m window --toggle sticky
 
-# toggle topmost (keep above other windows)
-alt - o : yabai -m window --toggle topmost
-
-# toggle sticky, topmost and resize to picture-in-picture size
+# toggle sticky, float and resize to picture-in-picture size
 alt - p : yabai -m window --toggle sticky;\
-          yabai -m window --toggle topmost;\
           yabai -m window --grid 5:5:4:0:1:1
 
 # change layout of desktop

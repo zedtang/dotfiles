@@ -2,43 +2,43 @@
 
 # bar settings
 yabai -m config status_bar                   on
-yabai -m config status_bar_text_font         "SF Pro Text:Medium:14.0"
-yabai -m config status_bar_icon_font         "SF Pro Text:Medium:14.0"
-yabai -m config status_bar_background_color  0x00262626
-yabai -m config status_bar_foreground_color  0xffe4e4e4
-yabai -m config status_bar_space_icon_strip  1 2 3 4 5 6 7 8 9 0
-yabai -m config status_bar_power_icon_strip  - +
-yabai -m config status_bar_space_icon        *
-yabai -m config status_bar_clock_icon
+yabai -m config status_bar_text_font         "FiraCode Nerd Font:Regular:14.0"
+yabai -m config status_bar_icon_font         "FiraCode Nerd Font:Regular:14.0"
+yabai -m config status_bar_background_color  0xff282c34
+yabai -m config status_bar_foreground_color  0xffabb2bf
+yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
+yabai -m config status_bar_power_icon_strip   
+yabai -m config status_bar_space_icon        
+yabai -m config status_bar_clock_icon        
 
 # global settings
 yabai -m config mouse_follows_focus          on
-yabai -m config focus_follows_mouse          autoraise
-yabai -m config window_topmost               on
+yabai -m config focus_follows_mouse          autofocus
+yabai -m config window_topmost               off
 yabai -m config window_placement             second_child
 yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
-yabai -m config window_shadow                float
-yabai -m config window_border                off
-yabai -m config window_border_width          2
-yabai -m config active_window_border_color   0xffe4e4e4
-yabai -m config normal_window_border_color   0xff444444
-yabai -m config insert_window_border_color   0xff005faf
+yabai -m config window_shadow                on
+yabai -m config window_border                on
+yabai -m config window_border_width          4
+yabai -m config active_window_border_color   0xffabb2bf
+yabai -m config normal_window_border_color   0xff282c34
+yabai -m config insert_window_border_color   0xff98c379
 yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.95
+yabai -m config normal_window_opacity        0.90
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
-yabai -m config mouse_modifier               ctrl
+yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  0
-yabai -m config bottom_padding               0
-yabai -m config left_padding                 0
-yabai -m config right_padding                0
-yabai -m config window_gap                   2
+yabai -m config top_padding                  10
+yabai -m config bottom_padding               10
+yabai -m config left_padding                 10
+yabai -m config right_padding                10
+yabai -m config window_gap                   10
 
 # rules for apps
 yabai -m rule --add app="^Finder$" manage=off
@@ -64,3 +64,5 @@ yabai -m rule --add app="^Logitech Options$" manage=off
 yabai -m rule --add app="^Workspace ONE Intelligent Hub$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
+
+echo "yabai configuration loaded."
