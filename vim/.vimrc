@@ -240,6 +240,8 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
+set tags=./tags;,tags
+
 " }}}
 "*****************************************************************************
 "" Visual Settings {{{
@@ -505,11 +507,6 @@ map <C-x> <Nop>
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
-" tags
-" jump to tag if one, show list otherwise
-nmap <C-]> g<C-]>
-set tags=./.tags;,.tags
 
 nmap <leader>fw :FixWhitespace<CR>
 
@@ -807,7 +804,6 @@ let g:pandoc#after#modules#enabled = ["ultisnips", "tablemode"]
 
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_file_list_command = {
       \ 'markers': {
       \ '.git': 'git ls-files',
