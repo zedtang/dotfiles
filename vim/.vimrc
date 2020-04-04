@@ -72,6 +72,7 @@ Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Plug 'arthurxavierx/vim-caser'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'skywind3000/asyncrun.vim'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -539,7 +540,7 @@ nnoremap <silent> <leader>n :NERDTreeMirrorToggle<CR>
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
-nnoremap <silent> <leader>g :Rgrep<CR>
+nnoremap <silent> <leader>r :Rgrep<CR>
 
 " vim-fugitive
 noremap <Leader>ga :Gwrite<CR>
@@ -586,7 +587,7 @@ endif
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>f :FZF -m<CR>
-nnoremap <silent> <leader>s :Ag<CR>
+nnoremap <silent> <leader>ag :Ag<CR>
 " Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
 
@@ -855,6 +856,12 @@ let g:signify_vcs_cmds = {
 
 " vim-notes
 let g:notes_directories = ['~/src/notes']
+
+" asyncrun.vim
+let g:asyncrun_status = 'stopped'
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+nnoremap <leader>ar :AsyncRun 
 
 " }}}
 "*****************************************************************************
