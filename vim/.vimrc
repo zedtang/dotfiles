@@ -44,7 +44,7 @@ endif
 
 " Code Browsing
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
+Plug 'zedtang/cscope_maps'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " Writing Code
@@ -815,6 +815,8 @@ if executable('ctags')
 endif
 if executable('gtags-cscope') && executable('gtags')
   let g:gutentags_modules += ['gtags_cscope']
+elseif executable('cscope')
+  let g:gutentags_modules += ['cscope']
 endif
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
@@ -832,10 +834,6 @@ let g:gutentags_auto_add_gtags_cscope = 0
 if !isdirectory(s:vim_tags)
   silent! call mkdir(s:vim_tags, 'p')
 endif
-
-" gutentags_plus
-" change focus to quickfix window after search
-let g:gutentags_plus_switch = 1
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
