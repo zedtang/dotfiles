@@ -175,6 +175,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ~/.bashrc
 
 # User configuration
 
@@ -197,6 +198,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# get aliases and functions from .profile
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
