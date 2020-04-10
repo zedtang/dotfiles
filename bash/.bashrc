@@ -7,7 +7,7 @@ export GOPATH=$HOME/go
 for pp in \
     /usr/local/go/bin \
     $GOPATH/bin \
-; do
+    ; do
     PATH=$pp:${PATH}
 done
 export PATH
@@ -20,23 +20,23 @@ alias t='tmux attach || tmux new-session'
 
 # Gets current branch
 current_branch() {
-  git rev-parse --abbrev-ref HEAD
+    git rev-parse --abbrev-ref HEAD
 }
 
 # Parses the 'remote path' of the repo: username/repo
 gh_remote_path() {
-  GH_PATH=`git remote -v | tr ':' ' ' | tr '.' ' ' | awk '/push/ {print $4}'`
-  echo ${GH_PATH#com/}
+    GH_PATH=`git remote -v | tr ':' ' ' | tr '.' ' ' | awk '/push/ {print $4}'`
+    echo ${GH_PATH#com/}
 }
 
 # Opens current branch on Github, works for all repos
 gh() {
-  echo 'Opening branch on Github...'
-  open "https://github.com/$(gh_remote_path)/tree/$(current_branch)"
+    echo 'Opening branch on Github...'
+    open "https://github.com/$(gh_remote_path)/tree/$(current_branch)"
 }
 
 # Opens current branch on Github in the "Open a pull request" compare view
 newpr() {
-  echo 'Opening compare on Github...'
-  open "https://github.com/$(gh_remote_path)/compare/$(current_branch)?expand=1"
+    echo 'Opening compare on Github...'
+    open "https://github.com/$(gh_remote_path)/compare/$(current_branch)?expand=1"
 }
