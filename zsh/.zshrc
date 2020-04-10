@@ -15,61 +15,61 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Please only use this battery segment if you have material icons in your nerd font (or font)
 # Otherwise, use the font awesome one in "User Segments"
 prompt_zsh_battery_level() {
-local percentage1=`pmset -g ps  |  sed -n 's/.*[[:blank:]]+*\(.*%\).*/\1/p'`
-local percentage=`echo "${percentage1//\%}"`
-local color='%F{red}'
-local symbol="\uf00d"
-pmset -g ps | grep "discharging" > /dev/null
-if [ $? -eq 0 ]; then
-local charging="false";
-else
-local charging="true";
-fi
-if [ $percentage -le 20 ]
-then symbol='\uf579' ; color='%F{red}' ;
-#10%
-elif [ $percentage -gt 19 ] && [ $percentage -le 30 ]
-then symbol="\uf57a" ; color='%F{red}' ;
-#20%
-elif [ $percentage -gt 29 ] && [ $percentage -le 40 ]
-then symbol="\uf57b" ; color='%F{yellow}' ;
-#35%
-elif [ $percentage -gt 39 ] && [ $percentage -le 50 ]
-then symbol="\uf57c" ; color='%F{yellow}' ;
-#45%
-elif [ $percentage -gt 49 ] && [ $percentage -le 60 ]
-then symbol="\uf57d" ; color='%F{blue}' ;
-#55%
-elif [ $percentage -gt 59 ] && [ $percentage -le 70 ]
-then symbol="\uf57e" ; color='%F{blue}' ;
-#65%
-elif [ $percentage -gt 69 ] && [ $percentage -le 80 ]
-then symbol="\uf57f" ; color='%F{blue}' ;
-#75%
-elif [ $percentage -gt 79 ] && [ $percentage -le 90 ]
-then symbol="\uf580" ; color='%F{blue}' ;
-#85%
-elif [ $percentage -gt 89 ] && [ $percentage -le 99 ]
-then symbol="\uf581" ; color='%F{blue}' ;
-#85%
-elif [ $percentage -gt 98 ]
-then symbol="\uf578" ; color='%F{green}' ;
-#100%
-fi
-if [ $charging = "true" ];
-then color='%F{green}'; if [ $percentage -gt 98 ]; then symbol='\uf584'; fi
-fi
-echo -n "%{$color%}$symbol" ;
+    local percentage1=`pmset -g ps  |  sed -n 's/.*[[:blank:]]+*\(.*%\).*/\1/p'`
+    local percentage=`echo "${percentage1//\%}"`
+    local color='%F{red}'
+    local symbol="\uf00d"
+    pmset -g ps | grep "discharging" > /dev/null
+    if [ $? -eq 0 ]; then
+        local charging="false";
+    else
+        local charging="true";
+    fi
+    if [ $percentage -le 20 ]
+    then symbol='\uf579' ; color='%F{red}' ;
+        #10%
+    elif [ $percentage -gt 19 ] && [ $percentage -le 30 ]
+    then symbol="\uf57a" ; color='%F{red}' ;
+        #20%
+    elif [ $percentage -gt 29 ] && [ $percentage -le 40 ]
+    then symbol="\uf57b" ; color='%F{yellow}' ;
+        #35%
+    elif [ $percentage -gt 39 ] && [ $percentage -le 50 ]
+    then symbol="\uf57c" ; color='%F{yellow}' ;
+        #45%
+    elif [ $percentage -gt 49 ] && [ $percentage -le 60 ]
+    then symbol="\uf57d" ; color='%F{blue}' ;
+        #55%
+    elif [ $percentage -gt 59 ] && [ $percentage -le 70 ]
+    then symbol="\uf57e" ; color='%F{blue}' ;
+        #65%
+    elif [ $percentage -gt 69 ] && [ $percentage -le 80 ]
+    then symbol="\uf57f" ; color='%F{blue}' ;
+        #75%
+    elif [ $percentage -gt 79 ] && [ $percentage -le 90 ]
+    then symbol="\uf580" ; color='%F{blue}' ;
+        #85%
+    elif [ $percentage -gt 89 ] && [ $percentage -le 99 ]
+    then symbol="\uf581" ; color='%F{blue}' ;
+        #85%
+    elif [ $percentage -gt 98 ]
+    then symbol="\uf578" ; color='%F{green}' ;
+        #100%
+    fi
+    if [ $charging = "true" ];
+    then color='%F{green}'; if [ $percentage -gt 98 ]; then symbol='\uf584'; fi
+    fi
+    echo -n "%{$color%}$symbol" ;
 }
-zsh_internet_signal(){
-local color
-local symbol="\uf7ba"
-if ifconfig en0 | grep inactive &> /dev/null; then
-color="%F{red}"
-else
-color="%F{blue}"
-fi
-echo -n "%{$color%}$symbol "
+zsh_internet_signal() {
+    local color
+    local symbol="\uf7ba"
+    if ifconfig en0 | grep inactive &> /dev/null; then
+        color="%F{red}"
+    else
+        color="%F{blue}"
+    fi
+    echo -n "%{$color%}$symbol "
 }
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
@@ -162,16 +162,16 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  colored-man-pages
-  extract
-  fzf
-  git
-  osx
-  sudo
-  vscode
-  z
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+    colored-man-pages
+    extract
+    fzf
+    git
+    osx
+    sudo
+    vscode
+    z
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
