@@ -1,5 +1,5 @@
 # open terminal
-cmd - return : Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - return : open -a /Applications/iTerm.app
 
 # open Chrome
 cmd + shift - return : open -a Google\ Chrome

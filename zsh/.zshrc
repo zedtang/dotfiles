@@ -10,7 +10,7 @@ export ZSH="/Users/tjiaheng/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-POWERLEVEL9K_COLOR_SCHEME='dark'
+POWERLEVEL9K_COLOR_SCHEME='light'
 POWERLEVEL9K_MODE='nerdfont-complete'
 # Please only use this battery segment if you have material icons in your nerd font (or font)
 # Otherwise, use the font awesome one in "User Segments"

@@ -108,7 +108,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Color
-Plug 'joshdick/onedark.vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CSApprox'
@@ -267,24 +267,14 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-" Don't set a background color when running in a terminal;
-" just use the terminal's background color
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
-  augroup END
-endif
-
 set mousemodel=popup
 set t_Co=256
 set guioptions=egmrti
-set guifont=FiraCodeNerdFontComplete-Regular:h15
+set guifont=FiraCodeNerdFontComplete-Regular:h14
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
-    set guifont=FiraCodeNerdFontComplete-Regular:h15
+    set guifont=FiraCodeNerdFontComplete-Regular:h14
     set antialias
     set transparency=7
   endif
@@ -305,6 +295,20 @@ endif
 
 let no_buffers_menu=1
 
+let g:PaperColor_Theme_Options = {
+      \   'language': {
+      \     'python': {
+      \       'highlight_builtins' : 1
+      \     },
+      \     'cpp': {
+      \       'highlight_standard_library': 1
+      \     },
+      \     'c': {
+      \       'highlight_builtins' : 1
+      \     }
+      \   }
+      \ }
+
 syntax enable
 syntax on
 set ruler
@@ -313,8 +317,8 @@ set relativenumber
 set cursorline
 set noshowmode
 
-silent! colorscheme onedark
-set background=dark
+silent! colorscheme PaperColor
+set background=light
 
 highlight RedundantSpaces ctermbg=grey guibg=grey
 match RedundantSpaces /\s\+$/
@@ -341,7 +345,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'papercolor'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
