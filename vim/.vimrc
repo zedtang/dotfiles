@@ -59,6 +59,7 @@ Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
 Plug 'sgur/vim-textobj-parameter'
 Plug 'Shougo/echodoc.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Vim Functionality
 Plug 'henrik/vim-indexed-search'
@@ -320,9 +321,6 @@ set noshowmode
 silent! colorscheme PaperColor
 set background=light
 
-highlight RedundantSpaces ctermbg=grey guibg=grey
-match RedundantSpaces /\s\+$/
-
 " Disable the blinking cursor.
 set guicursor=a:blinkon0
 set scrolloff=3
@@ -442,8 +440,34 @@ function! FixMeTag()
   return "FIXME: [tjiaheng ".strftime("%Y-%m-%d")."]"
 endfunction
 
-" remove trailing whitespaces
-command! FixWhitespace :%s/\s\+$//e
+" Define new accents
+function! AirlineThemePatch(palette)
+  " [ guifg, guibg, ctermfg, ctermbg, opts ].
+  " See "help attr-list" for valid values for the "opt" value.
+  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+  let a:palette.accents.running = [ '', '', '', '', '' ]
+  let a:palette.accents.success = [ '#00ff00', '' , 'green', '', '' ]
+  let a:palette.accents.failure = [ '#ff0000', '' , 'red', '', '' ]
+endfunction
+
+" Change color of the relevant section according to g:asyncrun_status, a global variable exposed by AsyncRun
+" 'running': default, 'success': green, 'failure': red
+function! Get_asyncrun_running()
+  let async_status = g:asyncrun_status
+  if async_status != g:async_status_old
+    if async_status == 'running'
+      call airline#parts#define_accent('asyncrun_status', 'running')
+    elseif async_status == 'success'
+      call airline#parts#define_accent('asyncrun_status', 'success')
+    elseif async_status == 'failure'
+      call airline#parts#define_accent('asyncrun_status', 'failure')
+    endif
+    let g:airline_section_x = airline#section#create(['asyncrun_status'])
+    AirlineRefresh
+    let g:async_status_old = async_status
+  endif
+  return async_status
+endfunction
 
 " }}}
 "*****************************************************************************
@@ -512,7 +536,7 @@ map <C-x> <Nop>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-nmap <leader>fw :FixWhitespace<CR>
+nmap <leader>sw :StripWhitespace<CR>
 
 " }}}
 "*****************************************************************************
@@ -860,8 +884,10 @@ let g:signify_vcs_cmds = {
 let g:notes_directories = ['~/src/notes']
 
 " asyncrun.vim
-let g:asyncrun_status = 'stopped'
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+let g:async_status_old = ''
+call airline#parts#define_function('asyncrun_status', 'Get_asyncrun_running')
+let g:airline_section_x = airline#section#create(['asyncrun_status'])
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 nnoremap <leader>ar :AsyncRun 
 
