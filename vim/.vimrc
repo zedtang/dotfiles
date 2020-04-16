@@ -132,6 +132,7 @@ Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 " Python
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+Plug 'hdima/python-syntax', {'for': 'python'}
 
 " LaTex
 Plug 'lervag/vimtex'
