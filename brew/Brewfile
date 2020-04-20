@@ -38,6 +38,7 @@ brew "ranger"
 brew "stow"
 brew "the_silver_searcher"
 brew "tig"
+brew "tldr"
 brew "tmux"
 brew "tomcat", restart_service: true
 brew "tree"
