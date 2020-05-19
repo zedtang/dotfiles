@@ -167,51 +167,39 @@ filetype plugin indent on
 " Map leader to space
 let mapleader=' '
 
-" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-
-set ttyfast
-
-" Fix backspace indent
+set lazyredraw
 set backspace=indent,eol,start
-
 set updatetime=100
-
-" Fix slow <esc>o inserts
-set timeout timeoutlen=1000 ttimeoutlen=100
-
-" Tabs. May be overridden by autocmd rules
+set timeout timeoutlen=500 ttimeoutlen=100
 set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-
-" Enable hidden buffers
 set hidden
-
-" Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-" auto-change directory
 set autochdir
-
 set autoread
-
-" Directories for swp files
+set foldlevelstart=99
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 set nobackup
 set noswapfile
-
+set virtualedit=block
 set nojoinspaces
-
-" Use mouse
+set diffopt=filler,vertical
 set mouse=a
+set nostartofline
+set nrformats=hex
+set fileformats=unix,dos,mac
+set shortmess+=c
+set tags=./tags;,tags
 
 " Save edit history for undo
 if !isdirectory($HOME."/.vim/undodir")
@@ -219,8 +207,6 @@ if !isdirectory($HOME."/.vim/undodir")
 endif
 set undodir=~/.vim/undodir
 set undofile
-
-set fileformats=unix,dos,mac
 
 if exists('$SHELL')
   set shell=$SHELL
@@ -234,16 +220,11 @@ if has('patch-8.0.1000')
   set completeopt=menu,menuone,noselect
 endif
 
-" Suppress annoy messages
-set shortmess+=c
-
 " Disable visualbell
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
-
-set tags=./tags;,tags
 
 " }}}
 "*****************************************************************************
@@ -316,7 +297,7 @@ syntax on
 set ruler
 set number
 set relativenumber
-set cursorline
+set nocursorline
 set noshowmode
 
 silent! colorscheme PaperColor
@@ -324,7 +305,7 @@ set background=light
 
 " Disable the blinking cursor.
 set guicursor=a:blinkon0
-set scrolloff=3
+set scrolloff=5
 
 " Status bar
 set laststatus=2
