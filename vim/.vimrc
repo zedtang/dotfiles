@@ -775,6 +775,7 @@ let g:cpp_concepts_highlight = 1
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
+let g:go_auto_sameids = 1
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -973,6 +974,12 @@ augroup vimrc-make-cmake
   autocmd!
   autocmd FileType make setlocal noexpandtab
   autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
+" LaTex
+augroup latex-vim
+  autocmd!
+  autocmd FileType tex setlocal tabstop=2 shiftwidth=2
 augroup END
 
 " }}}
