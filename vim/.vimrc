@@ -60,6 +60,7 @@ Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
 Plug 'sgur/vim-textobj-parameter'
 Plug 'Shougo/echodoc.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'thirtythreeforty/lessspace.vim'
 
 " Vim Functionality
 Plug 'henrik/vim-indexed-search'
