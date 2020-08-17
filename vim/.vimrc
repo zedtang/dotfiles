@@ -136,7 +136,7 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'hdima/python-syntax', {'for': 'python'}
 
 " LaTex
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', {'for': 'tex'}
 
 " Markdown
 Plug 'godlygeek/tabular'
@@ -873,6 +873,9 @@ call airline#parts#define_function('asyncrun_status', 'Get_asyncrun_running')
 let g:airline_section_x = airline#section#create(['asyncrun_status'])
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 nnoremap <leader>ar :AsyncRun 
+
+" vimtex
+let g:tex_flavor = 'latex'
 
 " }}}
 "*****************************************************************************
