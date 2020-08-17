@@ -841,7 +841,6 @@ if executable('ctags') && system('ctags --version') =~? 'universal'
 endif
 
 let g:gutentags_cscope_build_inverted_index = 1
-let g:gutentags_auto_add_gtags_cscope = 0
 
 if !isdirectory(s:vim_tags)
   silent! call mkdir(s:vim_tags, 'p')
