@@ -565,6 +565,9 @@ noremap <Leader>grm :Gremove<CR>
 " Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
 
+" gv.vim
+noremap <Leader>gv :GV!<CR>
+
 " vim-session
 let g:session_directory = "~/.vim/session"
 let g:session_autoload = "no"
@@ -831,6 +834,10 @@ elseif executable('cscope')
   let g:gutentags_modules += ['cscope']
 endif
 let s:vim_tags = expand('~/.cache/tags')
+if !isdirectory(s:vim_tags)
+  silent! call mkdir(s:vim_tags, 'p')
+endif
+
 let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_ctags_extra_args = []
 let g:gutentags_ctags_extra_args += ['--fields=+niazS', '--extra=+q']
@@ -841,10 +848,15 @@ if executable('ctags') && system('ctags --version') =~? 'universal'
 endif
 
 let g:gutentags_cscope_build_inverted_index = 1
-
-if !isdirectory(s:vim_tags)
-  silent! call mkdir(s:vim_tags, 'p')
-endif
+let g:gutentags_exclude_filetypes = [
+      \ 'gitcommit',
+      \ 'gitconfig',
+      \ 'gitrebase',
+      \ 'gitsendemail',
+      \ 'git',
+      \ 'GV',
+      \ ]
+let g:gutentags_generate_on_empty_buffer = 1
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
