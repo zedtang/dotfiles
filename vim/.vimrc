@@ -186,7 +186,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set autochdir
 set autoread
 set foldlevelstart=99
 set grepformat=%f:%l:%c:%m,%f:%l:%m
