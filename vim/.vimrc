@@ -75,6 +75,7 @@ Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Plug 'arthurxavierx/vim-caser'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -887,6 +888,10 @@ nnoremap <leader>ar :AsyncRun
 
 " vimtex
 let g:tex_flavor = 'latex'
+
+" undotree
+let g:undotree_WindowLayout = 2
+nnoremap U :UndotreeToggle<CR>
 
 " }}}
 "*****************************************************************************
