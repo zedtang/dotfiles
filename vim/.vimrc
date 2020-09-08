@@ -698,11 +698,12 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
+let g:ycm_complete_in_strings = 1
 " Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
-let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_clangd_binary_path = 'clangd'
+let g:ycm_auto_hover = ''
 
 let g:ycm_semantic_triggers =  {
       \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
@@ -763,6 +764,7 @@ let g:ycm_filetype_whitelist = {
       \ "zimbu":1,
       \ "ps1":1,
       \ }
+nmap <leader>D <plug>(YCMHover)
 
 " c.vim
 let g:C_Ctrl_j = 0
