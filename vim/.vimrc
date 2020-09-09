@@ -704,8 +704,13 @@ let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 let g:ycm_clangd_binary_path = 'clangd'
 let g:ycm_auto_hover = ''
+let g:ycm_clangd_args = [
+            \ '--header-insertion=never',
+            \ '--background-index',
+            \ '-j=4',
+            \ ]
 
-let g:ycm_semantic_triggers =  {
+let g:ycm_semantic_triggers = {
       \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
       \ 'cs,lua,javascript': ['re!\w{2}'],
       \ }
