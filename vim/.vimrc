@@ -698,6 +698,7 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 " Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
