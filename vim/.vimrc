@@ -201,6 +201,10 @@ set nrformats=hex
 set fileformats=unix,dos,mac
 set shortmess+=c
 set tags=./tags;,tags
+set cscopeprg=gtags-cscope
+set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,a-
+set cscopetagorder=1
+set cscopeverbose
 
 " Save edit history for undo
 if !isdirectory($HOME."/.vim/undodir")
