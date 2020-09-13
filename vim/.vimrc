@@ -76,6 +76,7 @@ Plug 'arthurxavierx/vim-caser'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'myusuf3/numbers.vim'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -549,7 +550,7 @@ let g:nerdtree_tabs_open_on_console_startup=2
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_autofind=1
 nnoremap <silent> <F2> :NERDTreeTabsFind<CR>
-nnoremap <silent> <leader>n :NERDTreeMirrorToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeTabsToggle<CR>
 
 " grep.vim
 let Grep_Default_Options = '-IR'
@@ -616,6 +617,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 " ale
+let g:ale_fixers = {
+      \ 'c': ['remove_trailing_lines', 'trim_whitespace']
+      \ }
 let g:ale_linters = {
       \ 'c': ['gcc', 'cppcheck'],
       \ 'cpp': ['gcc', 'cppcheck'],
@@ -689,10 +693,9 @@ nmap <leader>pc :PlugClean<CR>
 nmap <leader>ps :PlugStatus<CR>
 
 " tagbar
-let g:tagbar_autofocus=0
-let g:tagbar_compact=1
-let g:tagbar_right=1
-let g:tagbar_width=35
+let g:tagbar_compact = 1
+let g:tagbar_right = 1
+let g:tagbar_width = 35
 let g:tagbar_sort = 0
 nnoremap <leader>tt :TagbarToggle<CR>
 
@@ -908,13 +911,6 @@ nnoremap U :UndotreeToggle<CR>
 "*****************************************************************************
 "" Autocmd Rules {{{
 "*****************************************************************************
-
-" Toggle relativenumber
-augroup number-toggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
 
 " Reload vimrc on save
 if has ('autocmd')     " Remain compatible with earlier versions
