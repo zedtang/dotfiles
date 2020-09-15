@@ -653,6 +653,7 @@ let g:ale_cpp_clang_options = '-Wall -O2 -std=c++1z'
 
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
+nmap <leader>an :ALENext<CR>
 
 " vim-sayonara
 nnoremap <silent><leader>x :Sayonara<CR>
