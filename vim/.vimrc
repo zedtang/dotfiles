@@ -694,11 +694,13 @@ nmap <leader>pc :PlugClean<CR>
 nmap <leader>ps :PlugStatus<CR>
 
 " tagbar
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
 let g:tagbar_right = 1
 let g:tagbar_width = 35
 let g:tagbar_sort = 0
-nnoremap <leader>tt :TagbarToggle<CR>
+nnoremap <silent><leader>tt :TagbarToggle<CR>
 
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
