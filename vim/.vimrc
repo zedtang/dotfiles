@@ -527,6 +527,9 @@ vnoremap K :m '<-2<CR>gv=gv
 
 nmap <leader>sw :StripWhitespace<CR>
 
+" Toggle quickfix window
+noremap <silent><leader>q :call asyncrun#quickfix_toggle(10)<CR>
+
 " }}}
 "*****************************************************************************
 "" Plugin Configs {{{
@@ -641,6 +644,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 let g:ale_set_highlights = 0
+let g:ale_set_quickfix = 1
 
 if executable('gcc') == 0 && executable('clang')
   let g:ale_linters.c += ['clang']
@@ -654,7 +658,11 @@ let g:ale_cpp_clang_options = '-Wall -O2 -std=c++1z'
 
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
-nmap <leader>an :ALENext<CR>
+
+nmap <silent> [a <Plug>(ale_previous_wrap)
+nmap <silent> ]a <Plug>(ale_next_wrap)
+nmap <silent> [A <Plug>(ale_first)
+nmap <silent> ]A <Plug>(ale_last)
 
 " vim-sayonara
 nnoremap <silent><leader>x :Sayonara<CR>
