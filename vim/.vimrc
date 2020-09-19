@@ -74,6 +74,7 @@ Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Plug 'arthurxavierx/vim-caser'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'myusuf3/numbers.vim'
@@ -903,6 +904,9 @@ call airline#parts#define_function('asyncrun_status', 'Get_asyncrun_running')
 let g:airline_section_x = airline#section#create(['asyncrun_status'])
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 nnoremap <leader>ar :AsyncRun 
+
+" asynctasks.vim
+nnoremap <leader>at :AsyncTask 
 
 " vimtex
 let g:tex_flavor = 'latex'
