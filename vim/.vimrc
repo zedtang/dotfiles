@@ -718,6 +718,7 @@ let g:ycm_clangd_binary_path = 'clangd'
 let g:ycm_auto_hover = ''
 let g:ycm_clangd_args = [
             \ '--header-insertion=never',
+            \ '--clang-tidy',
             \ '--background-index',
             \ '-j=4',
             \ ]
