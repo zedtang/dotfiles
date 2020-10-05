@@ -59,5 +59,6 @@ yabai -m rule --add app="^Logitech Options$" manage=off
 yabai -m rule --add app="^Workspace ONE Intelligent Hub$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^zoom.us$" manage=off
 
 echo "yabai configuration loaded."
