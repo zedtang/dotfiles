@@ -1,3 +1,4 @@
+tap "cmacrae/formulae"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -37,6 +38,7 @@ brew "vim"
 brew "wget"
 brew "zsh"
 brew "zsh-completions"
+brew "cmacrae/formulae/spacebar"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 brew "osx-cross/avr/avr-gcc@8", link: true

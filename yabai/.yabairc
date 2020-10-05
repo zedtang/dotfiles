@@ -1,15 +1,8 @@
 #!/usr/bin/env sh
 
 # bar settings
-yabai -m config status_bar                   on
-yabai -m config status_bar_text_font         "FiraCode Nerd Font:Regular:14.0"
-yabai -m config status_bar_icon_font         "FiraCode Nerd Font:Regular:14.0"
-yabai -m config status_bar_background_color  0x00262626
-yabai -m config status_bar_foreground_color  0xffe4e4e4
-yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
-yabai -m config status_bar_power_icon_strip   
-yabai -m config status_bar_space_icon        
-yabai -m config status_bar_clock_icon        
+SPACEBAR_HEIGHT=$(spacebar -m config height)
+yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
 
 # global settings
 yabai -m config mouse_follows_focus          on
@@ -19,7 +12,7 @@ yabai -m config window_placement             second_child
 yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                on
-yabai -m config window_border                on
+yabai -m config window_border                off
 yabai -m config window_border_width          4
 yabai -m config active_window_border_color   0xffe4e4e4
 yabai -m config normal_window_border_color   0xff444444
