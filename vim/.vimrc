@@ -1,13 +1,9 @@
-" vim-bootstrap
 " vim: set foldmethod=marker foldlevel=0 nomodeline:
 "*****************************************************************************
 "" Vim-PLug {{{
 "*****************************************************************************
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
-
-let g:vim_bootstrap_langs = "c,go,python"
-let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -93,7 +89,6 @@ Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
 
 " Misc
-Plug 'avelino/vim-bootstrap-updater'
 Plug 'mhinz/vim-startify'
 Plug 'ianding1/leetcode.vim'
 Plug 'xolox/vim-notes', { 'on': ['Note', 'SearchNotes', 'DeleteNotes', 'RecentNotes'] }
@@ -103,10 +98,6 @@ if exists('make')
   let g:make = 'make'
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
-
-" Vim-Session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -134,9 +125,8 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 
 " Python
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'hdima/python-syntax', {'for': 'python'}
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 " LaTex
 Plug 'lervag/vimtex', {'for': 'tex'}
@@ -202,6 +192,7 @@ set nostartofline
 set nrformats=hex
 set fileformats=unix,dos,mac
 set shortmess+=c
+set complete-=i
 set tags=./tags;,tags
 set cscopeprg=gtags-cscope
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,a-
@@ -415,16 +406,6 @@ if !exists('*s:setupWrapping')
   endfunction
 endif
 
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
 function! FixMeTag()
   return "FIXME: [tjiaheng ".strftime("%Y-%m-%d")."]"
 endfunction
@@ -464,7 +445,7 @@ endfunction
 "*****************************************************************************
 
 " terminal emulation
-nnoremap <silent> <leader>sh :terminal<CR>
+nnoremap <silent><leader>sh :terminal<CR>
 
 " Split
 set splitbelow
@@ -503,7 +484,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Clean search (highlight)
-nnoremap <silent> <leader>c :noh<CR>
+nnoremap <silent><leader>c :noh<CR>
 
 " Switching windows
 noremap <C-j> <C-w>j
@@ -517,6 +498,7 @@ vmap > >gv
 
 " 'Q' in normal mode enters Ex mode. You almost never want this.
 nmap Q <Nop>
+
 " Unbind for tmux
 map <C-a> <Nop>
 map <C-x> <Nop>
@@ -524,8 +506,6 @@ map <C-x> <Nop>
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
-nmap <leader>sw :StripWhitespace<CR>
 
 " Toggle quickfix window
 noremap <silent><leader>q :call asyncrun#quickfix_toggle(10)<CR>
@@ -553,14 +533,13 @@ let g:NERDTreeAutoDeleteBuffer=1
 let g:nerdtree_tabs_open_on_console_startup=2
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_autofind=1
-nnoremap <silent> <F2> :NERDTreeTabsFind<CR>
-nnoremap <silent> <leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
 
 " grep.vim
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
-nnoremap <silent> <leader>r :Rgrep<CR>
+nnoremap <silent><leader>r :Rgrep<CR>
 
 " vim-fugitive
 noremap <Leader>ga :Gwrite<CR>
@@ -576,16 +555,6 @@ nnoremap <Leader>o :.Gbrowse<CR>
 
 " gv.vim
 noremap <Leader>gv :GV!<CR>
-
-" vim-session
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-nnoremap <leader>so :OpenSession<Space>
-nnoremap <leader>ss :SaveSession<Space>
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
 
 " fzf.vim
 let g:fzf_layout={'window': {'width':0.9, 'height':0.6}}
@@ -608,9 +577,9 @@ if executable('rg')
 endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>f :FZF -m<CR>
-nnoremap <silent> <leader>ag :Ag<CR>
+nnoremap <silent><leader>b :Buffers<CR>
+nnoremap <silent><leader>f :FZF -m<CR>
+nnoremap <silent><leader>ag :Ag<CR>
 " Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
 
@@ -659,10 +628,10 @@ let g:ale_cpp_clang_options = '-Wall -O2 -std=c++1z'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
-nmap <silent> [a <Plug>(ale_previous_wrap)
-nmap <silent> ]a <Plug>(ale_next_wrap)
-nmap <silent> [A <Plug>(ale_first)
-nmap <silent> ]A <Plug>(ale_last)
+nmap <silent>[a <Plug>(ale_previous_wrap)
+nmap <silent>]a <Plug>(ale_next_wrap)
+nmap <silent>[A <Plug>(ale_first)
+nmap <silent>]A <Plug>(ale_last)
 
 " vim-sayonara
 nnoremap <silent><leader>x :Sayonara<CR>
@@ -823,17 +792,6 @@ let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
 
-" jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
-
 " Syntax highlight
 let python_highlight_all = 1
 
@@ -963,25 +921,6 @@ augroup END
 augroup vimrc-go
   autocmd!
   autocmd BufNewFile,BufRead *.go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-
-  autocmd FileType go nmap <Leader>dd <Plug>(go-def-vertical)
-  autocmd FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
-  autocmd FileType go nmap <Leader>db <Plug>(go-doc-browser)
-
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-  autocmd FileType go nmap <leader>t  <Plug>(go-test)
-  autocmd FileType go nmap <Leader>gt <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
-  autocmd FileType go nmap <C-g> :GoDecls<CR>
-  autocmd FileType go nmap <leader>dr :GoDeclsDir<CR>
-  autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<CR>
-  autocmd FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<CR>
-  autocmd FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
 augroup END
 
 augroup completion_preview_close
