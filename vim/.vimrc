@@ -881,6 +881,9 @@ let g:tex_flavor = 'latex'
 let g:undotree_WindowLayout = 2
 nnoremap U :UndotreeToggle<CR>
 
+" vim-startify
+let g:startify_change_to_dir = 0
+
 " }}}
 "*****************************************************************************
 "" Autocmd Rules {{{
