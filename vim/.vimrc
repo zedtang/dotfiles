@@ -539,6 +539,7 @@ nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
+let Grep_OpenQuickfixWindow = 0
 nnoremap <silent><leader>r :Rgrep<CR>
 
 " vim-fugitive
