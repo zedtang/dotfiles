@@ -4,8 +4,8 @@ spacebar -m config position          top
 spacebar -m config height            26
 spacebar -m config spacing_left      25
 spacebar -m config spacing_right     15
-spacebar -m config text_font         "FiraCode Nerd Font:Regular:14.0"
-spacebar -m config icon_font         "FiraCode Nerd Font:Regular:14.0"
+spacebar -m config text_font         "SF Mono:Regular:14.0"
+spacebar -m config icon_font         "JetBrainsMono Nerd Font:Regular:14.0"
 spacebar -m config background_color  0x00262626
 spacebar -m config foreground_color  0xffe4e4e4
 spacebar -m config space_icon_strip  I II III IV V VI VII VIII IX X

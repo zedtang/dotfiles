@@ -251,11 +251,11 @@ endif
 set mousemodel=popup
 set t_Co=256
 set guioptions=egmrti
-set guifont=FiraCodeNerdFontComplete-Regular:h14
+set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
-    set guifont=FiraCodeNerdFontComplete-Regular:h14
+    set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
     set antialias
     set transparency=7
   endif
