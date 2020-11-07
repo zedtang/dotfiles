@@ -186,7 +186,6 @@ set nobackup
 set noswapfile
 set virtualedit=block
 set nojoinspaces
-set diffopt=filler,vertical
 set mouse=a
 set nostartofline
 set nrformats=hex
@@ -198,6 +197,12 @@ set cscopeprg=gtags-cscope
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,a-
 set cscopetagorder=1
 set cscopeverbose
+
+" diff mode
+if &diff
+  set noreadonly
+  set diffopt=filler,vertical
+endif
 
 " Save edit history for undo
 if !isdirectory($HOME."/.vim/undodir")
