@@ -46,6 +46,7 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 " Writing Code
 Plug 'ycm-core/YouCompleteMe'
 Plug 'w0rp/ale'
+Plug 'puremourning/vimspector'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
@@ -74,6 +75,7 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'myusuf3/numbers.vim'
+Plug 'szw/vim-maximizer'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -444,6 +446,11 @@ function! Get_asyncrun_running()
   return async_status
 endfunction
 
+function! GotoWindow(id)
+  call win_gotoid(a:id)
+  MaximizerToggle
+endfunction
+
 " }}}
 "*****************************************************************************
 "" Mappings {{{
@@ -710,6 +717,7 @@ let g:ycm_clangd_args = [
 let g:ycm_semantic_triggers = {
       \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
       \ 'cs,lua,javascript': ['re!\w{2}'],
+      \ 'VimspectorPrompt': [ '.', '->', ':', '<' ],
       \ }
 
 let g:ycm_filetype_whitelist = {
@@ -889,6 +897,34 @@ nnoremap U :UndotreeToggle<CR>
 
 " vim-startify
 let g:startify_change_to_dir = 0
+
+" vimspector
+let g:vimspector_install_gadgets = [ 'vscode-cpptools' ]
+
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+" vim-maximizer
+let g:maximizer_set_default_mapping = 0
+nnoremap <silent><leader>m :MaximizerToggle!<CR>
 
 " }}}
 "*****************************************************************************
