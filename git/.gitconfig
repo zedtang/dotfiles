@@ -1,7 +1,14 @@
 [user]
-	name = Jiaheng Tang
-	email = tjiaheng@vmware.com
+    name = Jiaheng Tang
+    email = tjiaheng@vmware.com
 [push]
-	default = current
+    default = current
 [diff]
-	tool = vimdiff
+    tool = vimdiff
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    side-by-side = true
+    syntax-theme = GitHub

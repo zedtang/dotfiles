@@ -2,6 +2,7 @@ export TERM="xterm-256color"
 export EDITOR='vim'
 export MYVIMRC=~/.vimrc
 export VISUAL='vim'
+export BAT_PAGER="less -RF"
 
 export GOPATH=$HOME/go
 for pp in \
