@@ -64,7 +64,7 @@ Plug 'henrik/vim-indexed-search'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/vim-easy-align'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-repeat'
@@ -925,6 +925,10 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 " vim-maximizer
 let g:maximizer_set_default_mapping = 0
 nnoremap <silent><leader>m :MaximizerToggle!<CR>
+
+" vim-visual-multi
+let g:VM_silent_exit = 1
+let g:VM_show_warnings = 0
 
 " }}}
 "*****************************************************************************
