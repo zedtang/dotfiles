@@ -79,11 +79,7 @@ Plug 'szw/vim-maximizer'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
-endif
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'junegunn/gv.vim'
 
@@ -260,6 +256,20 @@ set t_Co=256
 set guioptions=egmrti
 set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
 
+let g:PaperColor_Theme_Options = {
+      \   'language': {
+      \     'python': {
+      \       'highlight_builtins' : 1
+      \     },
+      \     'cpp': {
+      \       'highlight_standard_library': 1
+      \     },
+      \     'c': {
+      \       'highlight_builtins' : 1
+      \     }
+      \   }
+      \ }
+
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
     set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
@@ -283,20 +293,6 @@ endif
 
 let no_buffers_menu=1
 
-let g:PaperColor_Theme_Options = {
-      \   'language': {
-      \     'python': {
-      \       'highlight_builtins' : 1
-      \     },
-      \     'cpp': {
-      \       'highlight_standard_library': 1
-      \     },
-      \     'c': {
-      \       'highlight_builtins' : 1
-      \     }
-      \   }
-      \ }
-
 syntax enable
 syntax on
 set ruler
@@ -305,8 +301,8 @@ set relativenumber
 set nocursorline
 set noshowmode
 
-silent! colorscheme PaperColor
 set background=light
+silent! colorscheme PaperColor
 
 " Disable the blinking cursor.
 set guicursor=a:blinkon0
@@ -382,11 +378,11 @@ let g:indentLine_fileTypeExclude = [
       \'markdown',
       \'startify',
       \'tagbar'
-      \]
+      \ ]
 
 " fzf.vim
-let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
       \ 'bg':      ['bg', 'Normal'],
       \ 'hl':      ['fg', 'Comment'],
       \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -398,7 +394,8 @@ let g:fzf_colors =
       \ 'pointer': ['fg', 'Exception'],
       \ 'marker':  ['fg', 'Keyword'],
       \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
+      \ 'header':  ['fg', 'Comment']
+      \ }
 
 " }}}
 "*****************************************************************************
@@ -859,20 +856,6 @@ let g:gutentags_generate_on_empty_buffer = 1
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
-
-" vim-signify
-let g:signify_vcs_list = ['git']
-let g:signify_difftool = 'diff'
-let g:signify_sign_add = '+'
-let g:signify_sign_delete = '_'
-let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change = '~'
-let g:signify_sign_changedelete = g:signify_sign_change
-let g:signify_as_gitgutter = 1
-
-let g:signify_vcs_cmds = {
-      \ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
-      \}
 
 " vim-notes
 let g:notes_directories = ['~/src/notes']
