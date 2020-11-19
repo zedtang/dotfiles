@@ -8,6 +8,7 @@ dotfiles=(bash \
           ranger \
           skhd \
           spacebar \
+          tig \
           tmux \
           vim \
           yabai \
