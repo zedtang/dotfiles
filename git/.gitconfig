@@ -5,6 +5,13 @@
     default = current
 [diff]
     tool = vimdiff
+[difftool]
+    prompt = false
+[merge]
+    tool = vimdiff
+[mergetool]
+    prompt = false
+    keepBackup = false
 [core]
     pager = delta
 [interactive]
