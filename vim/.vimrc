@@ -227,6 +227,11 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
+" Termdebug
+packadd termdebug
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
+
 " }}}
 "*****************************************************************************
 "" Visual Settings {{{
@@ -303,6 +308,10 @@ set noshowmode
 
 set background=light
 silent! colorscheme PaperColor
+
+" Termdebug highlight groups
+hi default debugPC term=reverse ctermbg=lightblue guibg=lightblue
+hi default debugBreakpoint term=reverse ctermbg=red guibg=red
 
 " Disable the blinking cursor.
 set guicursor=a:blinkon0

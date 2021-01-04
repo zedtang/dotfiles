@@ -51,18 +51,3 @@ end
 define thread
  info threads
 end
-
-define r
- run
- refresh
-end
-
-define c
- continue
- refresh
-end
-
-define n
- next
- refresh
-end
