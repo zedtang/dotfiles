@@ -210,3 +210,5 @@ bindkey "^X\\x7f" backward-kill-line
 
 # adds redo
 bindkey "^X^_" redo
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
