@@ -76,6 +76,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'myusuf3/numbers.vim'
 Plug 'szw/vim-maximizer'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -921,6 +923,15 @@ nnoremap <silent><leader>m :MaximizerToggle!<CR>
 " vim-visual-multi
 let g:VM_silent_exit = 1
 let g:VM_show_warnings = 0
+
+" bclose.vim
+let g:bclose_no_plugin_maps = 1
+
+" ranger.vim
+let g:ranger_map_keys = 0
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
+nmap - :Ranger<CR>
 
 " }}}
 "*****************************************************************************
