@@ -5,6 +5,7 @@ dotfiles=(bash \
           gdb \
           git \
           karabiner \
+          p10k \
           ranger \
           skhd \
           spacebar \
