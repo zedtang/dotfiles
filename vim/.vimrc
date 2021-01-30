@@ -248,11 +248,8 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" Use 24-bit (true-color) mode in Vim/Neovim
-if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
+" 24-bit true color: neovim 0.1.5+ / vim 7.4.1799+
+if has("termguicolors")
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
@@ -264,6 +261,11 @@ set guioptions=egmrti
 set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
 
 let g:PaperColor_Theme_Options = {
+      \   'theme': {
+      \     'default': {
+      \       'transparent_background': 1
+      \     }
+      \   },
       \   'language': {
       \     'python': {
       \       'highlight_builtins' : 1
@@ -278,6 +280,7 @@ let g:PaperColor_Theme_Options = {
       \ }
 
 if has("gui_running")
+  let g:PaperColor_Theme_Options['theme']['default']['transparent_background'] = 0
   if has("gui_mac") || has("gui_macvim")
     set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
     set antialias
@@ -310,6 +313,14 @@ set noshowmode
 
 set background=light
 silent! colorscheme PaperColor
+
+" Transparent background
+if !has('gui_running')
+  hi Normal ctermbg=NONE guibg=NONE
+  hi NonText ctermbg=NONE guibg=NONE
+  hi LineNr ctermbg=NONE guibg=NONE
+  hi SignColumn ctermbg=NONE guibg=NONE
+endif
 
 " Termdebug highlight groups
 hi default debugPC term=reverse ctermbg=lightblue guibg=lightblue

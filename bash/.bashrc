@@ -1,4 +1,3 @@
-export TERM="xterm-256color"
 export EDITOR='vim'
 export MYVIMRC=~/.vimrc
 export VISUAL='vim'
