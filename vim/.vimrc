@@ -26,8 +26,8 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 
 " Project/Filetree Browsing
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeTabsToggle' }
+Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
 
 " Buffer/File Browsing
 Plug 'vim-scripts/grep.vim', { 'on': 'Rgrep' }
@@ -75,7 +75,7 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'myusuf3/numbers.vim'
-Plug 'szw/vim-maximizer'
+Plug 'szw/vim-maximizer', { 'on': ['MaximizerToggle', 'MaximizerToggle!'] }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 
@@ -141,7 +141,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
 " tmux
-Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 "*****************************************************************************
