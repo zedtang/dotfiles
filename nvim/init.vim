@@ -1,6 +1,5 @@
-" vim: set foldmethod=marker foldlevel=0 nomodeline:
 "*****************************************************************************
-"" Vim-PLug {{{
+"" Vim-PLug
 "*****************************************************************************
 
 let vimplug_exists=expand(stdpath('data') . '/site/autoload/plug.vim')
@@ -46,7 +45,6 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 " Writing Code
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
-Plug 'puremourning/vimspector'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
@@ -55,6 +53,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
 Plug 'sgur/vim-textobj-parameter'
+Plug 'wellle/targets.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'thirtythreeforty/lessspace.vim'
@@ -65,16 +64,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'junegunn/vim-easy-align'
-Plug 'wellle/targets.vim'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
-Plug 'arthurxavierx/vim-caser'
-Plug 'pbrisbin/vim-mkdir'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'myusuf3/numbers.vim'
 Plug 'szw/vim-maximizer', { 'on': ['MaximizerToggle', 'MaximizerToggle!'] }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
@@ -82,7 +75,6 @@ Plug 'francoiscabrol/ranger.vim'
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'junegunn/gv.vim'
 
 " Comments
@@ -93,21 +85,10 @@ Plug 'mhinz/vim-startify'
 Plug 'ianding1/leetcode.vim'
 Plug 'xolox/vim-notes', { 'on': ['Note', 'SearchNotes', 'DeleteNotes', 'RecentNotes'] }
 
-let g:make = 'gmake'
-if exists('make')
-  let g:make = 'make'
-endif
-Plug 'Shougo/vimproc.vim', {'do': g:make}
-
-" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 " Color
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/CSApprox'
 Plug 'ryanoasis/vim-devicons'
 
 "*****************************************************************************
@@ -153,17 +134,13 @@ endif
 
 call plug#end()
 
-" }}}
 "*****************************************************************************
-"" Basic Setup {{{
+"" Basic Setup
 "*****************************************************************************"
 
 " Map leader to space
 let mapleader=' '
 
-set updatetime=100
-set timeout
-set timeoutlen=500
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -171,20 +148,17 @@ set expandtab
 set hidden
 set ignorecase
 set smartcase
-set foldlevelstart=99
-set grepformat=%f:%l:%c:%m,%f:%l:%m
 set nobackup
 set noswapfile
 set undofile
 set virtualedit=block
-set nojoinspaces
 set mouse=a
-set fileformats=unix,dos,mac
 set shortmess+=c
 set complete-=i
 set cscopeprg=gtags-cscope
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,a-
 set cscopetagorder=1
+set completeopt=menu,menuone,noselect
 
 " diff mode
 if &diff
@@ -198,26 +172,12 @@ else
   set shell=/bin/sh
 endif
 
-" Completion options
-set completeopt=menu,menuone
-if has('patch-8.0.1000')
-  set completeopt=menu,menuone,noselect
-endif
+" Python provider
+let g:python_host_prog = $PYTHON_HOST_PROG
+let g:python3_host_prog = $PYTHON3_HOST_PROG
 
-" Disable visualbell
-set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
-
-" Termdebug
-packadd termdebug
-let g:termdebug_popup = 0
-let g:termdebug_wide = 163
-
-" }}}
 "*****************************************************************************
-"" Visual Settings {{{
+"" Visual Settings
 "*****************************************************************************
 
 " 24-bit true color: neovim 0.1.5+ / vim 7.4.1799+
@@ -227,10 +187,16 @@ if has("termguicolors")
   set termguicolors
 endif
 
-set mousemodel=popup
-set t_Co=256
-set guioptions=egmrti
-set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
+set number
+set noruler
+set noshowcmd
+set noshowmode
+set scrolloff=5
+set noerrorbells
+set visualbell
+set title
+set titleold="Terminal"
+set titlestring=%F
 
 let g:PaperColor_Theme_Options = {
       \   'theme': {
@@ -251,55 +217,11 @@ let g:PaperColor_Theme_Options = {
       \   }
       \ }
 
-if has("gui_running")
-  let g:PaperColor_Theme_Options['theme']['default']['transparent_background'] = 0
-  if has("gui_mac") || has("gui_macvim")
-    set guifont=JetBrainsMonoNerdFontComplete-Regular:h14
-    set antialias
-    set transparency=7
-  endif
-else
-  let g:CSApprox_loaded = 1
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-    endif
-  endif
-endif
-
-if &term =~ '256color'
-  set t_ut=
-endif
-
-let no_buffers_menu=1
-
-set number
-set relativenumber
-set noshowcmd
-set noshowmode
-set scrolloff=5
-
 set background=light
 silent! colorscheme PaperColor
 
 " Transparent background
 hi SignColumn ctermbg=NONE guibg=NONE
-
-" Use modeline overrides
-set modeline
-set modelines=10
-
-set title
-set titleold="Terminal"
-set titlestring=%F
-
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
-if exists("*fugitive#statusline")
-  set statusline+=%{fugitive#statusline()}
-endif
 
 " vim-airline
 let g:airline_theme = 'papercolor'
@@ -345,11 +267,9 @@ else
 endif
 
 " IndentLine
-let g:indentLine_enabled = 1
 let g:indentLine_concealcursor = 0
 let g:indentLine_faster = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indent_guides_auto_colors = 1
 let g:indentLine_fileTypeExclude = [
       \'markdown',
       \'startify',
@@ -373,9 +293,8 @@ let g:fzf_colors = {
       \ 'header':  ['fg', 'Comment']
       \ }
 
-" }}}
 "*****************************************************************************
-"" Functions & Commands {{{
+"" Functions & Commands
 "*****************************************************************************
 
 if !exists('*s:setupWrapping')
@@ -419,18 +338,17 @@ function! Get_asyncrun_running()
   return async_status
 endfunction
 
-function! GotoWindow(id)
-  call win_gotoid(a:id)
-  MaximizerToggle
-endfunction
-
-" }}}
 "*****************************************************************************
-"" Mappings {{{
+"" Mappings
 "*****************************************************************************
 
 " terminal emulation
 nnoremap <silent><leader>sh :split term://zsh<CR>
+
+" Termdebug
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
+nnoremap <leader>dd :packadd termdebug<CR> :TermdebugCommand 
 
 " Split
 set splitbelow
@@ -485,9 +403,6 @@ tnoremap <C-w>l <C-\><C-n><C-w>l
 vmap < <gv
 vmap > >gv
 
-" 'Q' in normal mode enters Ex mode. You almost never want this.
-nmap Q <Nop>
-
 " Unbind for tmux
 map <C-a> <Nop>
 map <C-x> <Nop>
@@ -499,14 +414,12 @@ vnoremap K :m '<-2<CR>gv=gv
 " Toggle quickfix window
 noremap <silent><leader>q :call asyncrun#quickfix_toggle(10)<CR>
 
-" }}}
 "*****************************************************************************
-"" Plugin Configs {{{
+"" Plugin Configs
 "*****************************************************************************
 
 " nerdtree
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
@@ -541,8 +454,6 @@ noremap <Leader>gst :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>grm :Gremove<CR>
-" Open current line on GitHub
-nnoremap <Leader>o :.Gbrowse<CR>
 
 " gv.vim
 noremap <Leader>gv :GV!<CR>
@@ -572,12 +483,6 @@ nnoremap <silent><leader>f :FZF -m<CR>
 nnoremap <silent><leader>ag :Ag<CR>
 " Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
-
-" ultisnips
-let g:UltiSnipsExpandTrigger="<c-b>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
 
 " ale
 let g:ale_fixers = {
@@ -636,13 +541,6 @@ map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><leader>l <Plug>(easymotion-lineforward)
 map <Leader><leader>. <Plug>(easymotion-repeat)
 
-" vim-easy-align
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " leetcode.vim
 let g:leetcode_solution_filetype='cpp'
 let g:leetcode_browser='chrome'
@@ -694,7 +592,6 @@ let g:ycm_clangd_args = [
 let g:ycm_semantic_triggers = {
       \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
       \ 'cs,lua,javascript': ['re!\w{2}'],
-      \ 'VimspectorPrompt': [ '.', '->', ':', '<' ],
       \ }
 
 let g:ycm_filetype_whitelist = {
@@ -854,50 +751,8 @@ nnoremap <leader>at :AsyncTask
 " vimtex
 let g:tex_flavor = 'latex'
 
-" undotree
-let g:undotree_WindowLayout = 2
-nnoremap U :UndotreeToggle<CR>
-
 " vim-startify
 let g:startify_change_to_dir = 0
-
-" vimspector
-let g:vimspector_install_gadgets = [ 'vscode-cpptools' ]
-
-nnoremap <leader>dd :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
-
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
-
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
-
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
-
-" numbers.vim
-let g:numbers_exclude = [
-      \ 'unite',
-      \ 'tagbar',
-      \ 'startify',
-      \ 'gundo',
-      \ 'vimshell',
-      \ 'w3m',
-      \ 'nerdtree',
-      \ 'Mundo',
-      \ 'MundoDiff',
-      \ 'terminal',
-      \ ]
 
 " vim-maximizer
 let g:maximizer_set_default_mapping = 0
@@ -916,25 +771,9 @@ let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1
 nmap - :Ranger<CR>
 
-" }}}
 "*****************************************************************************
-"" Autocmd Rules {{{
+"" Autocmd Rules
 "*****************************************************************************
-
-" Reload vimrc on save
-if has ('autocmd')     " Remain compatible with earlier versions
-  augroup reload-vimrc " Source vim configuration upon save
-    autocmd!
-    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-  augroup END
-endif
-
-" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
-augroup vimrc-sync-fromstart
-  autocmd!
-  autocmd BufEnter * :syntax sync maxlines=200
-augroup END
 
 " Remember cursor position
 augroup vimrc-remember-cursor-position
@@ -947,11 +786,10 @@ autocmd InsertLeave * set nopaste
 
 augroup neovim-terminal
   autocmd!
-  autocmd TermOpen * setlocal filetype=terminal
+  " Disables number lines on terminal buffers
+  autocmd TermOpen * setlocal nonumber
   " Enter Terminal-mode (insert) automatically
   autocmd TermOpen * startinsert
-  " Disables number lines on terminal buffers
-  autocmd TermOpen * setlocal nonumber norelativenumber
   " allows you to use Ctrl-c on terminal window
   autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
   " Ignore various filetypes as those will close terminal automatically
@@ -1015,15 +853,14 @@ augroup latex-vim
   autocmd FileType tex setlocal tabstop=2 shiftwidth=2
 augroup END
 
-" vim-plug
-augroup vim-plug
+" nonumber, nocursorline
+augroup vimrc-nonumber-nocursorline
   autocmd!
-  autocmd FileType vim-plug setlocal nocursorline
+  autocmd FileType vim-plug,GV setlocal nonumber nocursorline
 augroup END
 
-" }}}
 "*****************************************************************************
-"" Abbreviations {{{
+"" Abbreviations
 "*****************************************************************************
 
 " no one is really happy until you have this shortcuts
@@ -1040,14 +877,11 @@ cnoreabbrev Qall qall
 
 iabbrev <expr> fixme FixMeTag()
 
-" }}}
 "*****************************************************************************
-" Local vimrc {{{
+" Local vimrc
 "*****************************************************************************
 
 " Include user's local vim config
 if filereadable(expand(stdpath('data') . '/local_init.vim'))
   source expand(stdpath('data') . '/local_init.vim')
 endif
-
-" }}}

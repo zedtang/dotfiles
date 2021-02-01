@@ -14,6 +14,8 @@ export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 export GTAGSLABEL=native-pygments
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export HOMEBREW_NO_AUTO_UPDATE=1
+export PYTHON_HOST_PROG=`which python`
+export PYTHON3_HOST_PROG=`which python3`
 
 alias t='tmux attach || tmux new-session'
 alias vim='nvim'
