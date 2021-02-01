@@ -1,6 +1,5 @@
-export EDITOR='vim'
-export MYVIMRC=~/.vimrc
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export BAT_PAGER="less -RF"
 
 export GOPATH=$HOME/go
@@ -17,6 +16,7 @@ export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 alias t='tmux attach || tmux new-session'
+alias vim='nvim'
 
 # Gets current branch
 current_branch() {

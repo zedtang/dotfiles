@@ -4,14 +4,18 @@
 [push]
     default = current
 [diff]
-    tool = vimdiff
+    tool = nvimdiff
 [difftool]
     prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
 [mergetool]
     prompt = false
     keepBackup = false
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [core]
     pager = delta
 [interactive]
