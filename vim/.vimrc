@@ -1,6 +1,5 @@
-" vim: set foldmethod=marker foldlevel=0 nomodeline:
 "*****************************************************************************
-"" Vim-PLug {{{
+"" Vim-PLug
 "*****************************************************************************
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
@@ -46,7 +45,6 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 " Writing Code
 Plug 'ycm-core/YouCompleteMe'
 Plug 'w0rp/ale'
-Plug 'puremourning/vimspector'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
@@ -78,6 +76,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
+Plug 'roxma/vim-tmux-clipboard'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -142,7 +141,6 @@ Plug 'vim-pandoc/vim-pandoc-after'
 
 " tmux
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
-Plug 'tmux-plugins/vim-tmux-focus-events'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -157,9 +155,8 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
-" }}}
 "*****************************************************************************
-"" Basic Setup {{{
+"" Basic Setup
 "*****************************************************************************"
 
 " Map leader to space
@@ -233,14 +230,8 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
-" Termdebug
-packadd termdebug
-let g:termdebug_popup = 0
-let g:termdebug_wide = 163
-
-" }}}
 "*****************************************************************************
-"" Visual Settings {{{
+"" Visual Settings
 "*****************************************************************************
 
 " Use block cursor in normal mode, vertical bar in insert mode
@@ -320,15 +311,8 @@ silent! colorscheme PaperColor
 
 " Transparent background
 if !has('gui_running')
-  hi Normal ctermbg=NONE guibg=NONE
-  hi NonText ctermbg=NONE guibg=NONE
-  hi LineNr ctermbg=NONE guibg=NONE
-  hi SignColumn ctermbg=NONE guibg=NONE
+  highlight SignColumn ctermbg=NONE guibg=NONE
 endif
-
-" Termdebug highlight groups
-hi default debugPC term=reverse ctermbg=lightblue guibg=lightblue
-hi default debugBreakpoint term=reverse ctermbg=red guibg=red
 
 " Disable the blinking cursor.
 set guicursor=a:blinkon0
@@ -423,9 +407,8 @@ let g:fzf_colors = {
       \ 'header':  ['fg', 'Comment']
       \ }
 
-" }}}
 "*****************************************************************************
-"" Functions & Commands {{{
+"" Functions & Commands
 "*****************************************************************************
 
 if !exists('*s:setupWrapping')
@@ -469,18 +452,17 @@ function! Get_asyncrun_running()
   return async_status
 endfunction
 
-function! GotoWindow(id)
-  call win_gotoid(a:id)
-  MaximizerToggle
-endfunction
-
-" }}}
 "*****************************************************************************
-"" Mappings {{{
+"" Mappings
 "*****************************************************************************
 
 " terminal emulation
 nnoremap <silent><leader>sh :terminal<CR>
+
+" Termdebug
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
+nnoremap <leader>dd :packadd termdebug<CR> :TermdebugCommand 
 
 " Split
 set splitbelow
@@ -545,14 +527,12 @@ vnoremap K :m '<-2<CR>gv=gv
 " Toggle quickfix window
 noremap <silent><leader>q :call asyncrun#quickfix_toggle(10)<CR>
 
-" }}}
 "*****************************************************************************
-"" Plugin Configs {{{
+"" Plugin Configs
 "*****************************************************************************
 
 " nerdtree
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
@@ -740,7 +720,6 @@ let g:ycm_clangd_args = [
 let g:ycm_semantic_triggers = {
       \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
       \ 'cs,lua,javascript': ['re!\w{2}'],
-      \ 'VimspectorPrompt': [ '.', '->', ':', '<' ],
       \ }
 
 let g:ycm_filetype_whitelist = {
@@ -907,30 +886,6 @@ nnoremap U :UndotreeToggle<CR>
 " vim-startify
 let g:startify_change_to_dir = 0
 
-" vimspector
-let g:vimspector_install_gadgets = [ 'vscode-cpptools' ]
-
-nnoremap <leader>dd :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
-
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
-
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
-
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
-
 " vim-maximizer
 let g:maximizer_set_default_mapping = 0
 nnoremap <silent><leader>m :MaximizerToggle!<CR>
@@ -948,9 +903,8 @@ let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1
 nmap - :Ranger<CR>
 
-" }}}
 "*****************************************************************************
-"" Autocmd Rules {{{
+"" Autocmd Rules
 "*****************************************************************************
 
 " Reload vimrc on save
@@ -1030,9 +984,8 @@ augroup latex-vim
   autocmd FileType tex setlocal tabstop=2 shiftwidth=2
 augroup END
 
-" }}}
 "*****************************************************************************
-"" Abbreviations {{{
+"" Abbreviations
 "*****************************************************************************
 
 " no one is really happy until you have this shortcuts
@@ -1049,14 +1002,11 @@ cnoreabbrev Qall qall
 
 iabbrev <expr> fixme FixMeTag()
 
-" }}}
 "*****************************************************************************
-" Local vimrc {{{
+" Local vimrc
 "*****************************************************************************
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
-" }}}
