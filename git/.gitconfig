@@ -19,3 +19,5 @@
 [delta]
     side-by-side = true
     syntax-theme = GitHub
+[rebase]
+    autosquash = true
