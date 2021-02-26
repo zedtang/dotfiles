@@ -464,7 +464,7 @@ nnoremap <silent><leader>sh :terminal<CR>
 " Termdebug
 let g:termdebug_popup = 0
 let g:termdebug_wide = 163
-nnoremap <leader>dd :packadd termdebug<CR> :TermdebugCommand 
+nnoremap <leader>dd :packadd termdebug<CR> :TermdebugCommand<SPACE>
 
 " Split
 set splitbelow
@@ -779,6 +779,10 @@ let g:ycm_filetype_whitelist = {
       \ "ps1":1,
       \ }
 nmap <leader>D <plug>(YCMHover)
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>jc :YcmCompleter GoToReferences<CR>
+nnoremap <leader>jf :YcmCompleter FixIt<CR>
+nnoremap <leader>jr :YcmCompleter RefactorRename<SPACE>
 
 " c.vim
 let g:C_Ctrl_j = 0
@@ -873,10 +877,10 @@ let g:async_status_old = ''
 call airline#parts#define_function('asyncrun_status', 'Get_asyncrun_running')
 let g:airline_section_x = airline#section#create(['asyncrun_status'])
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-nnoremap <leader>ar :AsyncRun 
+nnoremap <leader>ar :AsyncRun<SPACE>
 
 " asynctasks.vim
-nnoremap <leader>at :AsyncTask 
+nnoremap <leader>at :AsyncTask<SPACE>
 
 " vimtex
 let g:tex_flavor = 'latex'
