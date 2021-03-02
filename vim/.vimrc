@@ -561,15 +561,15 @@ nnoremap <silent><leader>r :Rgrep<CR>
 
 " vim-fugitive
 noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gp :Gpush<CR>
-noremap <Leader>gl :Gpull<CR>
-noremap <Leader>gst :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>grm :Gremove<CR>
+noremap <Leader>gc :Git commit<CR>
+noremap <Leader>gp :Git push<CR>
+noremap <Leader>gl :Git pull<CR>
+noremap <Leader>gst :Git<CR>
+noremap <Leader>gb :Git blame<CR>
+noremap <Leader>gd :Gvdiffsplit<CR>
+noremap <Leader>grm :GRemove<CR>
 " Open current line on GitHub
-nnoremap <Leader>o :.Gbrowse<CR>
+nnoremap <Leader>o :.GBrowse<CR>
 
 " gv.vim
 noremap <Leader>gv :GV!<CR>
@@ -985,9 +985,16 @@ augroup vimrc-make-cmake
 augroup END
 
 " LaTex
-augroup latex-vim
+augroup vimrc-latex
   autocmd!
   autocmd FileType tex setlocal tabstop=2 shiftwidth=2
+augroup END
+
+" vim-fugitive
+augroup vimrc-fugitive
+  autocmd!
+  autocmd FileType fugitive,fugitiveblame nmap <buffer> q gq
+  autocmd FileType git nmap <buffer> q <C-W>q
 augroup END
 
 "*****************************************************************************
