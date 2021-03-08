@@ -562,6 +562,7 @@ nnoremap <silent><leader>r :Rgrep<CR>
 " vim-fugitive
 noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Git commit<CR>
+noremap <Leader>gca :Git commit --amend<CR>
 noremap <Leader>gp :Git push<CR>
 noremap <Leader>gl :Git pull<CR>
 noremap <Leader>gst :Git<CR>
