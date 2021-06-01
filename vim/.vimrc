@@ -77,6 +77,7 @@ Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'roxma/vim-tmux-clipboard'
+Plug '907th/vim-auto-save'
 
 " Source Control Integration
 Plug 'tpope/vim-fugitive'
@@ -904,6 +905,11 @@ let g:ranger_map_keys = 0
 let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1
 nmap - :Ranger<CR>
+
+" vim-auto-save
+let g:auto_save = 1
+let g:auto_save_silent = 1
+let g:auto_save_events = ['InsertLeave', 'TextChanged', 'FocusLost']
 
 "*****************************************************************************
 "" Autocmd Rules
